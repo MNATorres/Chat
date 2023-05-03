@@ -1,9 +1,9 @@
 .chatContainer {
-    max-height: 340px;
+    height: 68%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column-reverse;
-    padding: 2px 10px;
+    padding: 3px 10px;
   }
   
   .chatMessage {
@@ -23,6 +23,7 @@
   .chatMessage .meta .sender {
     font-weight: bold;
     margin-right: 8px;
+    font-size: 14px;
   }
   
   .chatMessage .meta .timestamp {
@@ -31,6 +32,6 @@
   }
   
   .chatMessage .text {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
   }
