@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext } from 'react'
+import { ChatContext } from '../../../globalContext/ChatContext'
 import './ChatMessage.css'
 
-type PropsMessages = {
-  id: number,
-  sender: string,
-  text: string,
-  timestamp: string
-}
 
 export default function ChatMessage() {
-  const [messages, setMessages] = useState<PropsMessages[]>([]);
-
-  useEffect(() => {
-    fetch("/messages.json")
-      .then((response) => response.json())
-      .then((data) => setMessages(data.messages));
-  }, []);
-
-
+  const{messages} = useContext(ChatContext)
+  
   return (
     <div className='chatContainer'>
       {messages.map((message) => (

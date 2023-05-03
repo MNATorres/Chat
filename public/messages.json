@@ -8,7 +8,7 @@
       },
       {
         "id": 2,
-        "sender": "Mary",
+        "sender": "Support",
         "text": "Hola John, estoy bien, ¿y tú?",
         "timestamp": "10:17:00"
       },
@@ -20,19 +20,19 @@
       },
       {
         "id": 4,
-        "sender": "John",
+        "sender": "Support",
         "text": "De nada",
         "timestamp": "10:19:00"
       },
       {
         "id": 5,
-        "sender": "Mary",
+        "sender": "John",
         "text": "No tengo mas palabras",
         "timestamp": "10:20:00"
       },
       {
         "id": 6,
-        "sender": "John",
+        "sender": "Support",
         "text": "No te preocupes, yo tampoco",
         "timestamp": "10:21:00"
       }
