@@ -1,15 +1,25 @@
-import React from 'react'
-import HeaderChat from './ChatHeader'
+import React, { useContext } from 'react'
 import './Chat.css'
-import ChatMessage from './ChatMessage'
-import ChatInput from './ChatInput'
+import CloseChat from './closeChat/CloseChat'
+import ChatHeader from './chatHeader/ChatHeader'
+import ChatMessage from './chatMessage/ChatMessage'
+import ChatInput from './chatInput/ChatInput'
+import { ChatContext } from '../../globalContext/ChatContext'
 
 export default function Chat() {
+const {isClose} = useContext(ChatContext)
+
   return (
-    <div className='chat'>
-      <HeaderChat />
-      <ChatMessage />
-      <ChatInput />
-    </div>
+      <div className="chat-container">
+          <div className={isClose ? "noOpenChat" : "openChat"}>
+            <ChatHeader />
+            <ChatMessage />
+            <ChatInput />
+          </div>
+        <div className={isClose ? "noCloseChat" : "closeChat"}>
+          <CloseChat />
+        </div>
+      </div>
+
   )
 }

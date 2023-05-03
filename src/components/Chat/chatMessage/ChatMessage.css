@@ -2,7 +2,7 @@
     height: 68%;
     overflow-y: scroll;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     padding: 3px 10px;
   }
   
