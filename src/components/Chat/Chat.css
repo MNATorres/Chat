@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Roboto:ital,wght@0,300;1,400;1,500&family=Silkscreen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600&family=DotGothic16&family=Roboto:ital,wght@0,300;1,400;1,500&family=Silkscreen&display=swap');
 
 .openChat{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Assistant', sans-serif;
     background-color: rgb(242, 248, 250);
     width: 350px;
     height: 480px;
@@ -10,6 +10,7 @@
     right: 30px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .noOpenChat{

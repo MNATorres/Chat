@@ -45,7 +45,7 @@
 }
 
 .iconSend:hover{
-    color: rgb(18, 70, 181);
+    color: #26295B;
     font-size:31px;
     cursor: pointer;
 }
@@ -74,6 +74,6 @@
 }
 
 .img:hover, .doc:hover, .emojis:hover{
-    color: rgb(18, 70, 181);
+    color: #26295B;
     cursor: pointer;
 }
