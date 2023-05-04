@@ -29,7 +29,7 @@
 @media screen and (max-width: 400px) {
     .openChat{
         width: 90%;
-        height: 400px;
+        height: 500px;
         min-width: 250px;
         bottom: 7px;
         right: 15px;
