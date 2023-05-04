@@ -7,7 +7,7 @@ export default function ChatMessage() {
   const{messages, isCurrentUser} = useContext(ChatContext)
   
   return (
-    <div className='chatContainer'>
+    <div className='chatContainerLeft'>
       {messages.map((message) => (
         <div className={isCurrentUser(message.sender) ? "left" : "right"} key={message.id}>
           <div className="meta">
