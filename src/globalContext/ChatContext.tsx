@@ -12,30 +12,37 @@ interface ChatContext {
     handleClose: () => void
     isClose: boolean
     messages: PropsMessages[]
+    currentUser: string
+    isCurrentUser: (sender: string) => boolean;
 }
 
 export const ChatContext = React.createContext<ChatContext>({
-    handleClose: () => {},
+    handleClose: () => { },
     isClose: true,
-    messages: []
+    messages: [],
+    currentUser: "",
+    isCurrentUser: () => true
 })
 
-export const ChatProvider = ({children} : {children: React. ReactNode}) => {
+export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const [isClose, setIsClose] = useState(true)
     const [messages, setMessages] = useState<PropsMessages[]>([]);
+    const [currentUser, setCurrentUser] = useState("Support")
 
-  useEffect(() => {
-    fetch("/messages.json")
-      .then((response) => response.json())
-      .then((data) => setMessages(data.messages));
-  }, []);
+    useEffect(() => {
+        fetch("/messages.json")
+            .then((response) => response.json())
+            .then((data) => setMessages(data.messages));
+    }, []);
 
     const handleClose = () => {
         setIsClose(!isClose)
     }
 
-    return(
-        <ChatContext.Provider value={{handleClose, isClose, messages}}>
+    const isCurrentUser = (sender: string) => sender === currentUser;
+
+    return (
+        <ChatContext.Provider value={{ handleClose, isClose, messages, currentUser, isCurrentUser }}>
             {children}
         </ChatContext.Provider>
     )

@@ -4,12 +4,12 @@ import './ChatMessage.css'
 
 
 export default function ChatMessage() {
-  const{messages} = useContext(ChatContext)
+  const{messages, isCurrentUser} = useContext(ChatContext)
   
   return (
     <div className='chatContainer'>
       {messages.map((message) => (
-        <div className="chatMessage" key={message.id}>
+        <div className={isCurrentUser(message.sender) ? "left" : "right"} key={message.id}>
           <div className="meta">
             <span className="sender">{message.sender}</span>
             <span className="timestamp">{message.timestamp}</span>

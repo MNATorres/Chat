@@ -3,35 +3,55 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    align-items: start;
     padding: 3px 10px;
-  }
+}
+
+.chatContainerRight {
+  height: 68%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding: 3px 10px;
+}
   
-  .chatMessage {
+  .left {
+    max-width: 70%;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
     margin-bottom: 16px;
     padding: 12px;
   }
+
+  .right {
+    max-width: 70%;
+    background-color: #c3d7ff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    margin-bottom: 16px;
+    padding: 12px;
+  }
   
-  .chatMessage .meta {
+   .meta {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
   }
   
-  .chatMessage .meta .sender {
+   .meta .sender {
     font-weight: bold;
     margin-right: 8px;
     font-size: 14px;
   }
   
-  .chatMessage .meta .timestamp {
+   .meta .timestamp {
     color: #999;
     font-size: 12px;
   }
   
-  .chatMessage .text {
+   .text {
     font-size: 14px;
     line-height: 1.5;
   }
