@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 
 type PropsMessages = {
@@ -28,17 +28,17 @@ export const ChatContext = React.createContext<ChatContext>({
     messages: [],
     currentUser: "",
     isCurrentUser: () => true,
-    handleChange: (e: React.BaseSyntheticEvent) => { },
-    handleSubmit: (e: React.BaseSyntheticEvent) => { },
+    handleChange: (_e: React.BaseSyntheticEvent) => { },
+    handleSubmit: (_e: React.BaseSyntheticEvent) => { },
     text: "",
-    handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => { },
+    handleKeyDown: (_event: React.KeyboardEvent<HTMLTextAreaElement>) => { },
     scrollRef: null
 })
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const [isClose, setIsClose] = useState(true)
     const [messages, setMessages] = useState<any[]>([])
-    const [currentUser, setCurrentUser] = useState("Support")
+    const [currentUser, ] = useState("Support")
     const [textValue, setTextValue] = useState("")
     const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -50,14 +50,14 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
 
 
     const loadMessages = () =>
-        fetch("http://localhost:9000/api/messages")
+        fetch("https://chat-back-three.vercel.app/api/messages")
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
                 setMessages(data);
                 console.log(data);
-            });
+        });
 
     useEffect(() => {
         loadMessages()
@@ -99,7 +99,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
         };
 
 
-        fetch("http://localhost:9000/api/message", {
+        fetch("https://chat-back-three.vercel.app/api/message", {
             method: "POST",
             body: JSON.stringify(newMessage),
             headers: {
