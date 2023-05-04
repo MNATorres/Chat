@@ -15,9 +15,10 @@ interface ChatContext {
     messages: PropsMessages[];
     currentUser: string;
     isCurrentUser: (sender: string) => boolean;
-    updateText: (e: React.BaseSyntheticEvent) => void;
-    handleAdd: () => void;
+    handleChange : (e: React.BaseSyntheticEvent) => void;
+    handleSubmit : (e: React.BaseSyntheticEvent) => void;
     text: string;
+    handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void
 }
 
 export const ChatContext = React.createContext<ChatContext>({
@@ -26,9 +27,11 @@ export const ChatContext = React.createContext<ChatContext>({
     messages: [],
     currentUser: "",
     isCurrentUser: () => true,
-    updateText: (e: React.BaseSyntheticEvent) => { },
-    handleAdd: () => { },
-    text: ""
+    handleChange : (e: React.BaseSyntheticEvent) => { },
+    handleSubmit : (e: React.BaseSyntheticEvent) => { },
+    text: "",
+    handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => {}
+
 })
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
@@ -37,18 +40,24 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const [currentUser, setCurrentUser] = useState("Support")
     const [text, setText] = useState("")
 
-    const updateText = (e: React.BaseSyntheticEvent) => {
+    const handleChange  = (e: React.BaseSyntheticEvent) => {
         setText(e.currentTarget.value);
-        console.log(text)
     }
 
-    const handleAdd = () => {
+    const handleSubmit  = (e: React.BaseSyntheticEvent) => {
+        e.preventDefault();
         if(text.length === 0) return
         setMessages([...messages, { id: Math.random(), text: text, timestamp: "10/12/2023", sender: "Jhon" }]);
         setText("");
     }
 
-    console.log(messages)
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+          event.preventDefault();
+          handleSubmit(event);
+        }
+    };
+
 
     useEffect(() => {
         fetch("/messages.json")
@@ -63,7 +72,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const isCurrentUser = (sender: string) => sender === currentUser;
 
     return (
-        <ChatContext.Provider value={{ handleClose, isClose, messages, currentUser, isCurrentUser, updateText, handleAdd, text }}>
+        <ChatContext.Provider value={{ handleClose, isClose, messages, currentUser, isCurrentUser, handleChange , handleSubmit , text, handleKeyDown }}>
             {children}
         </ChatContext.Provider>
     )

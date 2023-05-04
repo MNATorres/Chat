@@ -8,25 +8,25 @@ import { ChatContext } from '../../../globalContext/ChatContext';
 
 
 export default function ChatInput() {
-    const { updateText, handleAdd, text } = useContext(ChatContext)
+    const { handleChange , handleSubmit , text, handleKeyDown } = useContext(ChatContext)
 
-    const handleSubmit = () => {
-        handleAdd();
-    }
+    
 
     return (
         <div className='inputContainer'>
-            <div className='textContainer'>
-                <textarea onChange={updateText} value={text} placeholder='Aa'></textarea>
-                <button onClick={handleSubmit}>
-                    <IoMdSend className='iconSend' />
-                </button>
-            </div>
-            <div className="media-container">
-                <MdOutlineEmojiEmotions className="emojis" />
-                <BsFiletypeDoc className="doc" />
-                <FiImage className="img" />
-            </div>
+            <form onSubmit={handleSubmit }>
+                <div className='textContainer'>
+                    <textarea onKeyDown={handleKeyDown} onChange={handleChange } value={text} placeholder='Aa'></textarea>
+                    <button type='submit' aria-label='Enviar mensaje'>
+                        <IoMdSend className='iconSend' />
+                    </button>
+                </div>
+                <div className="media-container">
+                    <MdOutlineEmojiEmotions className="emojis" />
+                    <BsFiletypeDoc className="doc" />
+                    <FiImage className="img" />
+                </div>
+            </form>
         </div>
     )
 }
