@@ -8,12 +8,6 @@ type PropsMessages = {
     timestamp: string
 }
 
-type PropsInputText = {
-    id: number,
-    text: string,
-    timestamp: string,
-    send: string
-}
 
 interface ChatContext {
     handleClose: () => void;
@@ -22,8 +16,8 @@ interface ChatContext {
     currentUser: string;
     isCurrentUser: (sender: string) => boolean;
     updateText: (e: React.BaseSyntheticEvent) => void;
-    handleAdd: () => void
-
+    handleAdd: () => void;
+    text: string;
 }
 
 export const ChatContext = React.createContext<ChatContext>({
@@ -34,6 +28,7 @@ export const ChatContext = React.createContext<ChatContext>({
     isCurrentUser: () => true,
     updateText: (e: React.BaseSyntheticEvent) => { },
     handleAdd: () => { },
+    text: ""
 })
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
@@ -41,7 +36,6 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const [messages, setMessages] = useState<PropsMessages[]>([])
     const [currentUser, setCurrentUser] = useState("Support")
     const [text, setText] = useState("")
-    const [listChats, setListChats] = useState<PropsInputText[]>([])
 
     const updateText = (e: React.BaseSyntheticEvent) => {
         setText(e.currentTarget.value);
@@ -49,16 +43,12 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     const handleAdd = () => {
-        setListChats([...listChats, { id: Math.random(), text: text, timestamp: "10/12/2023", send: "Jhon" }]);
-        setText(() => "");
+        if(text.length === 0) return
+        setMessages([...messages, { id: Math.random(), text: text, timestamp: "10/12/2023", sender: "Jhon" }]);
+        setText("");
     }
 
-    useEffect(() => {
-        setText("");
-      }, [listChats]);
-    console.log(listChats)
-
-    
+    console.log(messages)
 
     useEffect(() => {
         fetch("/messages.json")
@@ -73,7 +63,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const isCurrentUser = (sender: string) => sender === currentUser;
 
     return (
-        <ChatContext.Provider value={{ handleClose, isClose, messages, currentUser, isCurrentUser, updateText, handleAdd }}>
+        <ChatContext.Provider value={{ handleClose, isClose, messages, currentUser, isCurrentUser, updateText, handleAdd, text }}>
             {children}
         </ChatContext.Provider>
     )

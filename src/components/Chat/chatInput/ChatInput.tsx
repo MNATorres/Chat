@@ -8,13 +8,17 @@ import { ChatContext } from '../../../globalContext/ChatContext';
 
 
 export default function ChatInput() {
-    const { updateText, handleAdd } = useContext(ChatContext)
+    const { updateText, handleAdd, text } = useContext(ChatContext)
+
+    const handleSubmit = () => {
+        handleAdd();
+    }
 
     return (
         <div className='inputContainer'>
             <div className='textContainer'>
-                <textarea onChange={updateText} placeholder='Aa'></textarea>
-                <button onClick={handleAdd}>
+                <textarea onChange={updateText} value={text} placeholder='Aa'></textarea>
+                <button onClick={handleSubmit}>
                     <IoMdSend className='iconSend' />
                 </button>
             </div>

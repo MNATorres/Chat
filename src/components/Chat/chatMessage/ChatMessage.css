@@ -1,5 +1,5 @@
 .chatContainer {
-    max-height: 68%;
+    height: 68%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
