@@ -16,6 +16,11 @@
     justify-content: space-around;
 }
 
+.textContainer button{
+    background-color: unset;
+    border-style: none;
+}
+
 .textContainer textarea{
     width: 100%;
     max-width: 85%;
