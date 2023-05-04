@@ -43,8 +43,8 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const scrollRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        if(scrollRef.current === null) return
-         scrollRef.current.scrollBy(0,1000) 
+        if (scrollRef.current === null) return
+        scrollRef.current.scrollBy(0, 1000)
     }, [messages, isClose])
 
 
@@ -76,19 +76,28 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
             e.currentTarget.value,
         );
 
-        console.log("handleChange", textValue)
     }
+
+    let localTime = () => {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const timestamp = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        return timestamp
+    }
+
+
 
     const handleSubmit = (e: React.BaseSyntheticEvent) => {
         e.preventDefault();
+        if (textValue.trim() === "") return
 
         const newMessage = {
             sender: "Jhon",
-            timestamp: new Date().toISOString(),
+            timestamp: localTime(),
             text: textValue
         };
 
-        console.log("Array de mensajes", messages);
 
         fetch("http://localhost:9000/api/message", {
             method: "POST",
@@ -103,6 +112,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
         setTextValue("");
 
     }
+
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === 'Enter' && !event.shiftKey) {
