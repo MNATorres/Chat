@@ -2,7 +2,7 @@
     background-color: white;
     height: 20%;
     border-top: 1px solid #b4b6b8;
-    padding-top: 3px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -63,6 +63,7 @@
     align-items: center;
 }
 
+/*
 .emojis{
     font-size: 25px;
     color: #b4b6b8;
@@ -82,3 +83,4 @@
     color: #26295B;
     cursor: pointer;
 }
+*/

@@ -21,12 +21,15 @@ export default function ChatInput() {
                         <IoMdSend className='iconSend' />
                     </button>
                 </div>
-                <div className="media-container">
-                    <MdOutlineEmojiEmotions className="emojis" />
-                    <BsFiletypeDoc className="doc" />
-                    <FiImage className="img" />
-                </div>
+
             </form>
         </div>
     )
 }
+
+/*<div className="media-container">
+    <MdOutlineEmojiEmotions className="emojis" />
+    <BsFiletypeDoc className="doc" />
+    <FiImage className="img" />
+</div>
+*/

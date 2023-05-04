@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 
 type PropsMessages = {
-    id: number,
+    _id: string;
     sender: string,
     text: string,
     timestamp: string
@@ -18,7 +18,8 @@ interface ChatContext {
     handleChange: (e: React.BaseSyntheticEvent) => void;
     handleSubmit: (e: React.BaseSyntheticEvent) => void;
     text: string;
-    handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void
+    handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void,
+    scrollRef: React.RefObject<HTMLDivElement> | null
 }
 
 export const ChatContext = React.createContext<ChatContext>({
@@ -30,25 +31,77 @@ export const ChatContext = React.createContext<ChatContext>({
     handleChange: (e: React.BaseSyntheticEvent) => { },
     handleSubmit: (e: React.BaseSyntheticEvent) => { },
     text: "",
-    handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => { }
-
+    handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => { },
+    scrollRef: null
 })
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const [isClose, setIsClose] = useState(true)
-    const [messages, setMessages] = useState<PropsMessages[]>([])
+    const [messages, setMessages] = useState<any[]>([])
     const [currentUser, setCurrentUser] = useState("Support")
-    const [text, setText] = useState("")
+    const [textValue, setTextValue] = useState("")
+    const scrollRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        if(scrollRef.current === null) return
+         scrollRef.current.scrollBy(0,1000) 
+    }, [messages, isClose])
+
+
+
+    const loadMessages = () =>
+        fetch("http://localhost:9000/api/messages")
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                setMessages(data);
+                console.log(data);
+            });
+
+    useEffect(() => {
+        loadMessages()
+    }, []);
+
+
+    const handleClose = () => {
+        setIsClose(!isClose)
+    }
+
+    const isCurrentUser = (sender: string) => sender === currentUser;
+
 
     const handleChange = (e: React.BaseSyntheticEvent) => {
-        setText(e.currentTarget.value);
+        setTextValue(
+            e.currentTarget.value,
+        );
+
+        console.log("handleChange", textValue)
     }
 
     const handleSubmit = (e: React.BaseSyntheticEvent) => {
         e.preventDefault();
-        if (text.length === 0) return
-        setMessages([...messages, { id: Math.random(), text: text, timestamp: "10/12/2023", sender: "Jhon" }]);
-        setText("");
+
+        const newMessage = {
+            sender: "Jhon",
+            timestamp: new Date().toISOString(),
+            text: textValue
+        };
+
+        console.log("Array de mensajes", messages);
+
+        fetch("http://localhost:9000/api/message", {
+            method: "POST",
+            body: JSON.stringify(newMessage),
+            headers: {
+                "Content-type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then(() => loadMessages());
+
+        setTextValue("");
+
     }
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -59,20 +112,12 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
 
-    useEffect(() => {
-        fetch("/messages.json")
-            .then((response) => response.json())
-            .then((data) => setMessages(data.messages));
-    }, []);
 
-    const handleClose = () => {
-        setIsClose(!isClose)
-    }
 
-    const isCurrentUser = (sender: string) => sender === currentUser;
+
 
     return (
-        <ChatContext.Provider value={{ handleClose, isClose, messages, currentUser, isCurrentUser, handleChange, handleSubmit, text, handleKeyDown }}>
+        <ChatContext.Provider value={{ handleClose, isClose, messages, currentUser, isCurrentUser, handleChange, handleSubmit, text: textValue, handleKeyDown, scrollRef }}>
             {children}
         </ChatContext.Provider>
     )
