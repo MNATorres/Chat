@@ -7,19 +7,19 @@ import ChatInput from './chatInput/ChatInput'
 import { ChatContext } from '../../globalContext/ChatContext'
 
 export default function Chat() {
-const {isClose} = useContext(ChatContext)
+  const { isClose } = useContext(ChatContext)
 
   return (
-      <div className="chat-container">
-          <div className={isClose ? "noOpenChat" : "openChat"}>
-            <ChatHeader />
-            <ChatMessage />
-            <ChatInput />
-          </div>
-        <div className={isClose ? "noCloseChat" : "closeChat"}>
-          <CloseChat />
-        </div>
+    <div className="chat-container">
+      <div className={isClose ? "noOpenChat" : "openChat"}>
+        <ChatHeader />
+        <ChatMessage />
+        <ChatInput />
       </div>
+      <div className={isClose ? "noCloseChat" : "closeChat"}>
+        <CloseChat />
+      </div>
+    </div>
 
   )
 }

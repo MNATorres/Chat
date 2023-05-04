@@ -5,8 +5,8 @@ import { MdOutlineClose } from 'react-icons/md'
 import { ChatContext } from '../../../globalContext/ChatContext';
 
 export default function HeaderChat() {
-const {handleClose} = useContext(ChatContext)
-  
+  const { handleClose } = useContext(ChatContext)
+
   return (
     <div className='headerChat'>
       <div className="user">
