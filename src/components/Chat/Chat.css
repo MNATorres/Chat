@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600&family=DotGothic16&family=Roboto:ital,wght@0,300;1,400;1,500&family=Silkscreen&display=swap');
 
-.openChat{
+.openChat {
     font-family: 'Assistant', sans-serif;
     background-color: rgb(242, 248, 250);
     width: 350px;
@@ -11,23 +11,23 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    transition: all ease 1s;
+    transition: all 0.5s ease-in-out;
 }
 
-.noOpenChat{
+.noOpenChat {
+    opacity: 0;
+}
+
+.noCloseChat {
     display: none;
 }
 
-.closeChat{
-    display: none;
-}
-
-.noCloseChat{
+.closeChat {
     display: unset;
 }
 
 @media screen and (max-width: 400px) {
-    .openChat{
+    .openChat {
         width: 90%;
         height: 500px;
         min-width: 250px;

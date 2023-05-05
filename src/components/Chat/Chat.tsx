@@ -16,7 +16,7 @@ export default function Chat() {
         <ChatMessage />
         <ChatInput />
       </div>
-      <div className={isClose ? "noCloseChat" : "closeChat"}>
+      <div className={isClose ?  "closeChat" : "noCloseChat"}>
         <CloseChat />
       </div>
     </div>
