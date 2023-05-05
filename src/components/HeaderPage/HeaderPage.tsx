@@ -14,7 +14,7 @@ export default function HeaderPage() {
           <TiMessages />
         </button>
       </div>
-      <div className={closeChatHeader ? "messagesContainer" : "closMessagesContainer" } >
+      <div className={closeChatHeader ? "messagesContainer ultext" : "closMessagesContainer" } >
         <ul className='ulChatHeader'>
           {usersChat.map((user) => {
             return (

@@ -8,7 +8,7 @@ type PropsMessages = {
     timestamp: string
 }
 
-const users = ["user1", "user2"]
+const users = ["Matias", "Ralph"]
 
 
 interface ChatContext {
