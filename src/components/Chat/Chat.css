@@ -16,7 +16,16 @@
 
 .noOpenChat {
     opacity: 0;
+    font-family: 'Assistant', sans-serif;
+    background-color: rgb(242, 248, 250);
+    width: 0px;
+    height: 0px;
+    position: fixed;
+    bottom: 15px;
+    right: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+
 
 .noCloseChat {
     display: none;

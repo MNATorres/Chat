@@ -8,6 +8,8 @@ type PropsMessages = {
     timestamp: string
 }
 
+const users = ["user1", "user2"]
+
 
 interface ChatContext {
     handleClose: () => void;
@@ -18,8 +20,11 @@ interface ChatContext {
     handleChange: (e: React.BaseSyntheticEvent) => void;
     handleSubmit: (e: React.BaseSyntheticEvent) => void;
     text: string;
-    handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void,
-    scrollRef: React.RefObject<HTMLDivElement> | null
+    handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+    scrollRef: React.RefObject<HTMLDivElement> | null;
+    usersChat: string[];
+    handleCloseChatHeader: () => void
+    closeChatHeader: boolean
 }
 
 export const ChatContext = React.createContext<ChatContext>({
@@ -32,15 +37,20 @@ export const ChatContext = React.createContext<ChatContext>({
     handleSubmit: (_e: React.BaseSyntheticEvent) => { },
     text: "",
     handleKeyDown: (_event: React.KeyboardEvent<HTMLTextAreaElement>) => { },
-    scrollRef: null
+    scrollRef: null,
+    usersChat: [],
+    handleCloseChatHeader: () => { },
+    closeChatHeader: false
 })
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const [isClose, setIsClose] = useState(true)
     const [messages, setMessages] = useState<any[]>([])
-    const [currentUser, ] = useState("Support")
+    const [currentUser,] = useState("Support")
     const [textValue, setTextValue] = useState("")
+    const [usersChat, setUserChat] = useState<string[]>(users)
     const scrollRef = useRef<HTMLDivElement>(null)
+    const [closeChatHeader, setCloseChatHeader] = useState(false)
 
     useEffect(() => {
         if (scrollRef.current === null) return
@@ -57,7 +67,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
             .then((data) => {
                 setMessages(data);
                 console.log(data);
-        });
+            });
 
     useEffect(() => {
         loadMessages()
@@ -122,12 +132,14 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
 
-
+    const handleCloseChatHeader = () => {
+        setCloseChatHeader(!closeChatHeader)
+    }
 
 
 
     return (
-        <ChatContext.Provider value={{ handleClose, isClose, messages, currentUser, isCurrentUser, handleChange, handleSubmit, text: textValue, handleKeyDown, scrollRef }}>
+        <ChatContext.Provider value={{ handleClose, isClose, messages, currentUser, isCurrentUser, handleChange, handleSubmit, text: textValue, handleKeyDown, scrollRef, usersChat, handleCloseChatHeader, closeChatHeader }}>
             {children}
         </ChatContext.Provider>
     )
