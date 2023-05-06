@@ -24,24 +24,41 @@
 
 }
 
-.noOpenChat .bodyChat{
+.noOpenChat .bodyChat {
     display: none;
 }
 
+.chatMovil {
+    display: none;
+    transition: all 50ms ease-in-out;
+
+}
+
+.closeChatMovil {
+    display: none;
+    transition: all 50ms ease-in-out;
+
+}
+
 @media screen and (max-width: 600px) {
-    .openChat{
+    .openChat {
         min-width: 340px;
     }
 
-    .noOpenChat{
+    .noOpenChat {
         min-width: 340px;
     }
 
 }
 
 
-@media screen and (max-width: 450px) {
-    .noOpenChat{
-        width: 100px;
+@media screen and (max-width: 550px) {
+    .noOpenChat {
+        display: none;
+    }
+
+    .chatMovil {
+        display: unset;
+        transition: all 50ms ease-in-out;
     }
 }

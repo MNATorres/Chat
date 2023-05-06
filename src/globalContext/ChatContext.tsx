@@ -88,8 +88,12 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
 
   const handleSubmit = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
+    if (!loggedUser) {
+      alert('Debes iniciar sesión para enviar un mensaje');
+      return;
+    }
     if (textValue.trim() === '') return;
-
+    
     const newMessage = {
       sender: loggedUser,
       timestamp: localTime(),

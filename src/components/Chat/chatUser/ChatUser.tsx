@@ -4,6 +4,7 @@ import ChatHeader from '../chatHeader/ChatHeader'
 import ChatMessage from '../chatMessage/ChatMessage'
 import ChatInput from '../chatInput/ChatInput'
 import { ChatContext } from '../../../globalContext/ChatContext'
+import ChatMovil from '../chatMovil/ChatMovil'
 
 
 
@@ -18,6 +19,9 @@ export default function ChatUser() {
           <ChatMessage />
           <ChatInput />
         </div>
+      </div>
+      <div className={isClose ? "chatMovil" : "closeChatMovil"}>
+        <ChatMovil />
       </div>
     </div>
 
