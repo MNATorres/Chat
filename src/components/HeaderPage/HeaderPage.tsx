@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import './HeaderPage.css'
 import { ChatContext } from '../../globalContext/ChatContext'
-import { UserContext } from '../../globalContext/UserContext'
 import cerrarSession from './../../img/cerrar.png'
 
 
