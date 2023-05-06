@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const usersList = ["Matias", "Ralhp"];
 
 interface UserContext {
-    users: string[]
+    loggedUser: string | null
 }
 
 type ChildrenProvider = {
@@ -11,14 +11,14 @@ type ChildrenProvider = {
 }
 
 export const UserContext = React.createContext<UserContext>({
-    users: [],
+    loggedUser: null
 })
 
 export const UserProvider = ({children}: ChildrenProvider) => {
-const [users, setUsers] = useState<string[]>(usersList)
+const [loggedUser, setLoggedUser] = useState<string | null>(null)
 
     return(
-        <UserContext.Provider value={{users}}>
+        <UserContext.Provider value={{loggedUser}}>
             {children}
         </UserContext.Provider>
     )
