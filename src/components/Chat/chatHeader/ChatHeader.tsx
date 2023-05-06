@@ -4,11 +4,13 @@ import { BiSupport } from 'react-icons/bi'
 import { MdOutlineClose } from 'react-icons/md'
 import { ChatContext } from '../../../globalContext/ChatContext';
 
+
+//handleClose
 export default function HeaderChat() {
   const { handleClose } = useContext(ChatContext)
 
   return (
-    <div className='headerChat'>
+    <div className='headerChat' onClick={handleClose}>
       <div className="user">
         <BiSupport className='iconHeader' />
         <div className="userState">

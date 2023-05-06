@@ -5,41 +5,45 @@
     background-color: rgb(242, 248, 250);
     width: 350px;
     height: 480px;
-    position: fixed;
-    bottom: 15px;
-    right: 30px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    transition: all 0.5s ease-in-out;
+    transition: all 50ms ease-in-out;
+    margin: 0 2px;
 }
 
 .noOpenChat {
-    opacity: 0;
     font-family: 'Assistant', sans-serif;
-    background-color: rgb(242, 248, 250);
-    width: 0px;
-    height: 0px;
-    position: fixed;
-    bottom: 15px;
-    right: 30px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #26295B;
+    width: 350px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    transition: all 50ms ease-in-out;
+    margin: 0 2px;
+
 }
 
-.noCloseChat {
+.noOpenChat .bodyChat{
     display: none;
 }
 
-.closeChat {
-    display: unset;
+@media screen and (max-width: 600px) {
+    .openChat{
+        width: 80%;
+        min-width: 340px;
+    }
+
+    .noOpenChat{
+        width: 80%;
+        min-width: 340px;
+    }
+
 }
 
+
 @media screen and (max-width: 400px) {
-    .openChat {
-        width: 90%;
-        height: 500px;
-        min-width: 250px;
-        bottom: 7px;
-        right: 15px;
-    }
+    
 }
