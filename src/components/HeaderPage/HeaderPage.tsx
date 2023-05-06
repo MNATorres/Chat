@@ -2,10 +2,12 @@ import React, { useContext } from 'react'
 import './HeaderPage.css'
 import { TiMessages } from 'react-icons/ti'
 import { ChatContext } from '../../globalContext/ChatContext'
+import { UserContext } from '../../globalContext/UserContext'
 
 
 export default function HeaderPage() {
-  const { usersChat, handleCloseChatHeader, closeChatHeader } = useContext(ChatContext)
+  const { handleCloseChatHeader, closeChatHeader } = useContext(ChatContext)
+  const {users} = useContext(UserContext)
 
   return (
     <div className='headerPageContainer'>
@@ -14,12 +16,14 @@ export default function HeaderPage() {
           <TiMessages />
         </button>
       </div>
-      <div className={closeChatHeader ? "messagesContainer ultext" : "closMessagesContainer" } >
+      <div className={closeChatHeader ? "messagesContainer ultext" : "closMessagesContainer"} >
         <ul className='ulChatHeader'>
-          {usersChat.map((user) => {
+          {users.map((user) => {
             return (
               <li>
-                {user}
+                <a href="http://127.0.0.1:5173/" target="_blank">
+                  {user}
+                </a>
               </li>
             )
           })}

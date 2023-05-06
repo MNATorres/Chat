@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import './ChatUser.css'
 import ChatHeader from '../chatHeader/ChatHeader'
 import ChatMessage from '../chatMessage/ChatMessage'
@@ -8,8 +8,7 @@ import { ChatContext } from '../../../globalContext/ChatContext'
 
 
 export default function ChatUser() {
-  const { isClose, handleClose } = useContext(ChatContext)
-  
+  const { isClose } = useContext(ChatContext)
 
   return (
     <div>
