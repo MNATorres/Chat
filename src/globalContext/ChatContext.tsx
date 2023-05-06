@@ -121,6 +121,10 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const handleCloseChatHeader = () => {
+    if (!loggedUser) {
+      alert('Por favor, selecciona un usuario');
+      return;
+    }
     setCloseChatHeader(!closeChatHeader);
   };
 
