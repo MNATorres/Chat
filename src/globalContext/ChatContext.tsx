@@ -47,6 +47,25 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [closeChatHeader, setCloseChatHeader] = useState(false);
   const { loggedUser } = useContext(UserContext);
+  const intervalRef = useRef<any>(null)
+
+  useEffect(() => {
+    if (!intervalRef.current) {
+      intervalRef.current = setInterval(() => {
+        loadMessages()
+        console.log(intervalRef.current)
+
+      }, 1000);
+    }
+
+    console.log(intervalRef.current)
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current === null) return;
@@ -93,7 +112,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
       return;
     }
     if (textValue.trim() === '') return;
-    
+
     const newMessage = {
       sender: loggedUser,
       timestamp: localTime(),
