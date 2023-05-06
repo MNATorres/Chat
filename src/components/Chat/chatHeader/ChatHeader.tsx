@@ -7,14 +7,14 @@ import { ChatContext } from '../../../globalContext/ChatContext';
 
 //handleClose
 export default function HeaderChat() {
-  const { handleClose } = useContext(ChatContext)
+  const { handleClose, currentUser } = useContext(ChatContext)
 
   return (
     <div className='headerChat' onClick={handleClose}>
       <div className="user">
         <BiSupport className='iconHeader' />
         <div className="userState">
-          <p>CompanyName</p>
+          <p>{currentUser}</p>
           <div className="isActive">
             <div></div>
             <p>Activo</p>

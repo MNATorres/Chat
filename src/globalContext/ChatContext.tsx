@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { UserContext } from './UserContext';
 
 
 type PropsMessages = {
@@ -13,7 +14,7 @@ interface ChatContext {
   handleClose: () => void;
   isClose: boolean;
   messages: PropsMessages[];
-  currentUser: string;
+  currentUser: string | null;
   isCurrentUser: (sender: string) => boolean;
   handleChange: (e: React.BaseSyntheticEvent) => void;
   handleSubmit: (e: React.BaseSyntheticEvent) => void;
@@ -40,85 +41,73 @@ export const ChatContext = React.createContext<ChatContext>({
 })
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isClose, setIsClose] = useState(true)
-  const [messages, setMessages] = useState<any[]>([])
-  const [currentUser,] = useState("Support")
-  const [textValue, setTextValue] = useState("")
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [closeChatHeader, setCloseChatHeader] = useState(false)
+  const [isClose, setIsClose] = useState(true);
+  const [messages, setMessages] = useState<any[]>([]);
+  const [textValue, setTextValue] = useState('');
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [closeChatHeader, setCloseChatHeader] = useState(false);
+  const { loggedUser } = useContext(UserContext);
 
   useEffect(() => {
-    if (scrollRef.current === null) return
-    scrollRef.current.scrollBy(0, 1000)
-  }, [messages, isClose])
-
-
+    if (scrollRef.current === null) return;
+    scrollRef.current.scrollBy(0, 1000);
+  }, [messages, isClose]);
 
   const loadMessages = () => {
-    fetch("https://chat-back-three.vercel.app/api/messages")
+    fetch('https://chat-back-three.vercel.app/api/messages')
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setMessages(data);
         console.log(data);
-      })
+      });
   };
 
   useEffect(() => {
-    loadMessages()
+    loadMessages();
   }, []);
 
-
   const handleClose = () => {
-    setIsClose(!isClose)
-  }
+    setIsClose(!isClose);
+  };
 
-  const isCurrentUser = (sender: string) => sender === currentUser;
-
+  const isCurrentUser = (sender: string) => sender === loggedUser;
 
   const handleChange = (e: React.BaseSyntheticEvent) => {
-    setTextValue(
-      e.currentTarget.value,
-    );
-
-  }
+    setTextValue(e.currentTarget.value);
+  };
 
   let localTime = () => {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
     const timestamp = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-    return timestamp
-  }
-
-
+    return timestamp;
+  };
 
   const handleSubmit = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
-    if (textValue.trim() === "") return
+    if (textValue.trim() === '') return;
 
     const newMessage = {
-      sender: "Jhon",
+      sender: loggedUser,
       timestamp: localTime(),
-      text: textValue
+      text: textValue,
     };
 
-
-    fetch("https://chat-back-three.vercel.app/api/message", {
-      method: "POST",
+    fetch('https://chat-back-three.vercel.app/api/message', {
+      method: 'POST',
       body: JSON.stringify(newMessage),
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
     })
       .then((response) => response.json())
       .then(() => loadMessages());
 
-    setTextValue("");
-
-  }
-
+    setTextValue('');
+  };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter' && !event.shiftKey) {
@@ -127,16 +116,30 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-
   const handleCloseChatHeader = () => {
-    setCloseChatHeader(!closeChatHeader)
-  }
+    setCloseChatHeader(!closeChatHeader);
+  };
 
-
+  console.log(loggedUser)
 
   return (
-    <ChatContext.Provider value={{ handleClose, isClose, messages, currentUser, isCurrentUser, handleChange, handleSubmit, text: textValue, handleKeyDown, scrollRef, handleCloseChatHeader, closeChatHeader }}>
+    <ChatContext.Provider
+      value={{
+        handleClose,
+        isClose,
+        messages,
+        currentUser: loggedUser,
+        isCurrentUser,
+        handleChange,
+        handleSubmit,
+        text: textValue,
+        handleKeyDown,
+        scrollRef,
+        handleCloseChatHeader,
+        closeChatHeader,
+      }}
+    >
       {children}
     </ChatContext.Provider>
-  )
-}
+  );
+};

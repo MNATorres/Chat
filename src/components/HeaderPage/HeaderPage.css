@@ -72,7 +72,7 @@
     align-items: center;
 }
 
-.ulChatHeader a{
+.ulChatHeader li{
     color: black;
     list-style: none;
     padding: 10px;
@@ -83,7 +83,7 @@
     text-decoration: none;
 }
 
-.ulChatHeader a:hover{
+.ulChatHeader li:hover{
     background-color: rgba(133, 127, 127, 0.2);
     border-radius: 5px;
     cursor: pointer;

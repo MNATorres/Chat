@@ -11,7 +11,7 @@ export default function ChatMessage() {
   return (
     <div className='chatContainer' ref={scrollRef} >
       {messages.map((message) => (
-        <div className={isCurrentUser(message.sender) ? "left" : "right"} key={message._id}>
+        <div className={isCurrentUser(message.sender) ? "right" : "left"} key={message._id}>
           <div className="meta">
             <span className="sender">{message.sender}</span>
             <span className="timestamp">{message.timestamp}</span>
