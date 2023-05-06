@@ -50,7 +50,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (scrollRef.current === null) return;
-    scrollRef.current.scrollBy(0, 1000);
+    scrollRef.current.scrollBy(0, 10000000);
   }, [messages, isClose]);
 
   const loadMessages = () => {
@@ -89,7 +89,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const handleSubmit = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (!loggedUser) {
-      alert('Debes iniciar sesión para enviar un mensaje');
+      alert('Por favor, selecciona un usuario');
       return;
     }
     if (textValue.trim() === '') return;
