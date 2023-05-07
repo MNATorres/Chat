@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import './ChatHeader.css'
-import { BiSupport } from 'react-icons/bi'
+import { FaUser } from 'react-icons/fa'
 import { MdOutlineClose } from 'react-icons/md'
 import { ChatContext } from '../../../globalContext/ChatContext';
 
@@ -12,7 +12,7 @@ export default function HeaderChat() {
   return (
     <div className='headerChat' onClick={handleClose}>
       <div className="user">
-        <BiSupport className='iconHeader' />
+        <FaUser className='iconHeader' />
         <div className="userState">
           <p>{currentUser}</p>
           <div className="isActive">
