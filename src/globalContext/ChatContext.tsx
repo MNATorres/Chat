@@ -50,19 +50,19 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const intervalRef = useRef<any>(null)
 
   useEffect(() => {
-    if (!intervalRef.current) {
+    if (intervalRef.current === null) {
+
       intervalRef.current = setInterval(() => {
         loadMessages()
-        console.log(intervalRef.current)
-
       }, 1000);
     }
-
-    console.log(intervalRef.current)
+    loadMessages();
 
     return () => {
       if (intervalRef.current) {
+
         clearInterval(intervalRef.current);
+        intervalRef.current = null
       }
     };
   }, []);
@@ -79,12 +79,10 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
       })
       .then((data) => {
         setMessages(data);
-        console.log(data);
       });
   };
 
   useEffect(() => {
-    loadMessages();
   }, []);
 
   const handleClose = () => {
@@ -147,7 +145,6 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     setCloseChatHeader(!closeChatHeader);
   };
 
-  console.log(loggedUser)
 
   return (
     <ChatContext.Provider
