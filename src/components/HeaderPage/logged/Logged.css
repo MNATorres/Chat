@@ -109,3 +109,9 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.selected{
+  font-weight: bold;
+  color: #26295B;
+  background-color: rgba(133, 127, 127, 0.2);
+}

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import './Logged.css'
 import { ChatContext } from '../../../globalContext/ChatContext'
 import { UserContext } from '../../../globalContext/UserContext'
@@ -9,6 +9,7 @@ const usersList = ["Soporte", "Invitado"];
 export default function Logged() {
   const { setLoggedUser } = useContext(UserContext)
   const { handleCloseChatHeader, closeChatHeader } = useContext(ChatContext)
+  const [selectedUser, setSelectedUser] = useState("");
 
   return (
     <div className={closeChatHeader ? "closeModal" : "modal-overlay"}>
@@ -23,9 +24,10 @@ export default function Logged() {
             {usersList.map((user) => {
               return (
                 <li key={user} onClick={() => {
-                  setLoggedUser(user)
-                }}
-                
+                  setLoggedUser(user);
+                  setSelectedUser(user);
+                }}                
+                className={selectedUser === user ? "selected" : ""}    
                 >
                   {user}
                 </li>
