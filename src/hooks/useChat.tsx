@@ -45,6 +45,23 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [closeChatHeader, setCloseChatHeader] = useState(false);
   const { loggedUser } = useContext(UserContext);
+  const intervalRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (intervalRef.current === null) {
+      intervalRef.current = setInterval(() => {
+        loadMessages();
+      }, 1000);
+    }
+    loadMessages();
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current === null) return;
