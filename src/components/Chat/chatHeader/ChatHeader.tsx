@@ -1,18 +1,16 @@
-import React, { useContext } from 'react';
-import './ChatHeader.css'
-import { BiSupport } from 'react-icons/bi'
-import { MdOutlineClose } from 'react-icons/md'
-import { ChatContext } from '../../../globalContext/ChatContext';
+import React, { useContext } from "react";
+import "./ChatHeader.css";
+import { BiSupport } from "react-icons/bi";
+import { MdOutlineClose } from "react-icons/md";
+import { ChatContext } from "../../../hooks/ChatContext";
 
-
-//handleClose
 export default function HeaderChat() {
-  const { handleClose, currentUser } = useContext(ChatContext)
+  const { handleClose, currentUser } = useContext(ChatContext);
 
   return (
-    <div className='headerChat' onClick={handleClose}>
+    <div className="headerChat" onClick={handleClose}>
       <div className="user">
-        <BiSupport className='iconHeader' />
+        <BiSupport className="iconHeader" />
         <div className="userState">
           <p>{currentUser}</p>
           <div className="isActive">
@@ -27,5 +25,5 @@ export default function HeaderChat() {
         </button>
       </div>
     </div>
-  )
+  );
 }

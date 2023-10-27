@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { UserContext } from './UserContext';
-
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { UserContext } from "./UserContext";
 
 type PropsMessages = {
   _id: string;
-  sender: string,
-  text: string,
-  timestamp: string
-}
-
+  sender: string;
+  text: string;
+  timestamp: string;
+};
 
 interface ChatContext {
   handleClose: () => void;
@@ -21,29 +19,29 @@ interface ChatContext {
   text: string;
   handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   scrollRef: React.RefObject<HTMLDivElement> | null;
-  handleCloseChatHeader: () => void
-  closeChatHeader: boolean
+  handleCloseChatHeader: () => void;
+  closeChatHeader: boolean;
 }
 
 export const ChatContext = React.createContext<ChatContext>({
-  handleClose: () => { },
+  handleClose: () => {},
   isClose: true,
   messages: [],
   currentUser: "",
   isCurrentUser: () => true,
-  handleChange: (_e: React.BaseSyntheticEvent) => { },
-  handleSubmit: (_e: React.BaseSyntheticEvent) => { },
+  handleChange: (_e: React.BaseSyntheticEvent) => {},
+  handleSubmit: (_e: React.BaseSyntheticEvent) => {},
   text: "",
-  handleKeyDown: (_event: React.KeyboardEvent<HTMLTextAreaElement>) => { },
+  handleKeyDown: (_event: React.KeyboardEvent<HTMLTextAreaElement>) => {},
   scrollRef: null,
-  handleCloseChatHeader: () => { },
-  closeChatHeader: false
-})
+  handleCloseChatHeader: () => {},
+  closeChatHeader: false,
+});
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const [isClose, setIsClose] = useState(true);
   const [messages, setMessages] = useState<any[]>([]);
-  const [textValue, setTextValue] = useState('');
+  const [textValue, setTextValue] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const [closeChatHeader, setCloseChatHeader] = useState(false);
   const { loggedUser } = useContext(UserContext);
@@ -54,7 +52,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   }, [messages, isClose]);
 
   const loadMessages = () => {
-    fetch('https://chat-back-three.vercel.app/api/messages')
+    fetch("https://chat-back-three.vercel.app/api/messages")
       .then((response) => {
         return response.json();
       })
@@ -82,39 +80,41 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
-    const timestamp = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    const timestamp = `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}`;
     return timestamp;
   };
 
   const handleSubmit = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (!loggedUser) {
-      alert('Por favor, selecciona un usuario');
+      alert("Por favor, selecciona un usuario");
       return;
     }
-    if (textValue.trim() === '') return;
-    
+    if (textValue.trim() === "") return;
+
     const newMessage = {
       sender: loggedUser,
       timestamp: localTime(),
       text: textValue,
     };
 
-    fetch('https://chat-back-three.vercel.app/api/message', {
-      method: 'POST',
+    fetch("https://chat-back-three.vercel.app/api/message", {
+      method: "POST",
       body: JSON.stringify(newMessage),
       headers: {
-        'Content-type': 'application/json',
+        "Content-type": "application/json",
       },
     })
       .then((response) => response.json())
       .then(() => loadMessages());
 
-    setTextValue('');
+    setTextValue("");
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       handleSubmit(event);
     }
@@ -124,7 +124,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     setCloseChatHeader(!closeChatHeader);
   };
 
-  console.log(loggedUser)
+  console.log(loggedUser);
 
   return (
     <ChatContext.Provider

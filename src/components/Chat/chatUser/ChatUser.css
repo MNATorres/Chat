@@ -1,66 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600&family=DotGothic16&family=Roboto:ital,wght@0,300;1,400;1,500&family=Silkscreen&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@400;600&family=DotGothic16&family=Roboto:ital,wght@0,300;1,400;1,500&family=Silkscreen&display=swap");
 
 .openChat {
-    font-family: 'Assistant', sans-serif;
-    background-color: rgb(242, 248, 250);
-    width: 350px;
-    height: 480px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    transition: all 50ms ease-in-out;
+  font-family: "Assistant", sans-serif;
+  background-color: rgb(242, 248, 250);
+  width: 350px;
+  height: 480px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: all 50ms ease-in-out;
 }
 
 .noOpenChat {
-    font-family: 'Assistant', sans-serif;
-    background-color: #26295B;
-    width: 350px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    transition: all 50ms ease-in-out;
-
+  font-family: "Assistant", sans-serif;
+  background-color: #26295b;
+  width: 350px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  transition: all 50ms ease-in-out;
 }
 
 .noOpenChat .bodyChat {
-    display: none;
+  display: none;
 }
 
 .chatMovil {
-    display: none;
-    transition: all 50ms ease-in-out;
-
+  display: none;
+  transition: all 50ms ease-in-out;
 }
 
 .closeChatMovil {
-    display: none;
-    transition: all 50ms ease-in-out;
-
+  display: none;
+  transition: all 50ms ease-in-out;
 }
 
 @media screen and (max-width: 600px) {
-    .openChat {
-        min-width: 340px;
-    }
+  .openChat {
+    min-width: 340px;
+  }
 
-    .noOpenChat {
-        min-width: 340px;
-    }
-
+  .noOpenChat {
+    min-width: 340px;
+  }
 }
 
-
 @media screen and (max-width: 550px) {
-    .noOpenChat {
-        display: none;
-    }
+  .noOpenChat {
+    display: none;
+  }
 
-    .chatMovil {
-        display: unset;
-        transition: all 50ms ease-in-out;
-    }
-
-    
+  .chatMovil {
+    display: unset;
+    transition: all 50ms ease-in-out;
+  }
 }

@@ -1,20 +1,18 @@
-.chatUserContainer{
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    position: fixed;
-    bottom: 0;
-    right: 30px;
+.chatUserContainer {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  position: fixed;
+  bottom: 0;
+  right: 30px;
 }
 
-@media screen and (max-width: 550px){
-    .chatUserContainer{
-        
-        display: flex;
-        justify-content: center;
-        position: fixed;
-        padding: 10px;
-        right: 0px;
-
-    }
+@media screen and (max-width: 550px) {
+  .chatUserContainer {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    padding: 10px;
+    right: 0px;
+  }
 }

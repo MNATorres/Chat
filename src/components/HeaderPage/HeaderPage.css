@@ -1,90 +1,88 @@
-.headerPageContainer{
-    background-color:#26295B;
-    padding: 11px 30px ;
-    display: flex;
-    align-items: end;
-    max-height: 66px;
-    min-height: 66px;
-    flex-direction: column;
-    position: fixed;
-    width: 100%;
+.headerPageContainer {
+  background-color: #26295b;
+  padding: 11px 30px;
+  display: flex;
+  align-items: end;
+  max-height: 66px;
+  min-height: 66px;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
 }
 
-.headerPageContainer div:first-child{
-    z-index: 11;
+.headerPageContainer div:first-child {
+  z-index: 11;
 }
 
-.headerPageContainer button{
-    width: 100px;
-    height: 40px;
-    background-color: unset;
-    border-style: none;
-    color: white;
-    font-size: 40px;
-    transition: all ease 0.3s;
+.headerPageContainer button {
+  width: 100px;
+  height: 40px;
+  background-color: unset;
+  border-style: none;
+  color: white;
+  font-size: 40px;
+  transition: all ease 0.3s;
 }
 
-.headerPageContainer button:hover{
-    color: rgb(219, 216, 216);
-    cursor: pointer;
+.headerPageContainer button:hover {
+  color: rgb(219, 216, 216);
+  cursor: pointer;
 }
 
-
-.messagesContainer{
-    margin-top: 13px;
-    color: black;
-    padding: 5px;
-    border:1px solid rgb(22, 21, 21, 0.3);
-    border-radius: 3px;
-    width: 280px;
-    background-color:#e6e6eb;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    transition:all 0.3s;
+.messagesContainer {
+  margin-top: 13px;
+  color: black;
+  padding: 5px;
+  border: 1px solid rgb(22, 21, 21, 0.3);
+  border-radius: 3px;
+  width: 280px;
+  background-color: #e6e6eb;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 0.3s;
 }
 
-
-.closMessagesContainer{
-    margin-top: 13px;
-    opacity: 0;
-    padding: 10px;
-    border:1px solid #26295B;
-    color: black;
-    border-radius: 3px;
-    width: 0px;
-    height: 0px;
-    background-color:#26295B;
-    color: #26295B;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    transition:all 0.3s;
+.closMessagesContainer {
+  margin-top: 13px;
+  opacity: 0;
+  padding: 10px;
+  border: 1px solid #26295b;
+  color: black;
+  border-radius: 3px;
+  width: 0px;
+  height: 0px;
+  background-color: #26295b;
+  color: #26295b;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 0.3s;
 }
 
-.closMessagesContainer ul{
-    display: none;
- }
-
-.closMessagesContainer ul li{
-   display: none;
+.closMessagesContainer ul {
+  display: none;
 }
 
-.ulChatHeader{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.closMessagesContainer ul li {
+  display: none;
 }
 
-.ulChatHeader li{
-    color: black;
-    list-style: none;
-    padding: 10px;
-    width: 200px;
-    text-align: center;
-    width: 95%;
-    margin: 3px 0;
-    text-decoration: none;
+.ulChatHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.ulChatHeader li:hover{
-    background-color: rgba(133, 127, 127, 0.2);
-    border-radius: 5px;
-    cursor: pointer;
+.ulChatHeader li {
+  color: black;
+  list-style: none;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  width: 95%;
+  margin: 3px 0;
+  text-decoration: none;
+}
+
+.ulChatHeader li:hover {
+  background-color: rgba(133, 127, 127, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
 }
