@@ -8,7 +8,7 @@ import style from './style.module.scss'
 
 function App() {
   return (
-    <div className={style.app}>
+    <div className={style.App}>
       <UserProvider>
         <ChatProvider>
           <HeaderPage />

@@ -75,7 +75,6 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
       })
       .then((data) => {
         setMessages(data);
-        console.log(data);
       });
   };
 

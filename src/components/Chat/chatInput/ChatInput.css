@@ -1,5 +1,5 @@
 .inputContainer {
-  background-color: white;
+  background-color: #d9d9e3;
   height: 20%;
   border-top: 1px solid #b4b6b8;
   padding-top: 10px;
@@ -14,6 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  background-color: #d9d9e3;
 }
 
 .textContainer button {
@@ -22,6 +23,7 @@
 }
 
 .textContainer textarea {
+  background-color: #d9d9e3;
   width: 100%;
   max-width: 85%;
   min-width: 85%;
@@ -45,12 +47,12 @@
 
 .iconSend {
   font-size: 30px;
-  color: #b4b6b8;
+  color: #939496;
   transition: color 0.5s, font-size 0s;
 }
 
 .iconSend:hover {
-  color: #26295b;
+  color: #1976d2;
   font-size: 31px;
   cursor: pointer;
 }

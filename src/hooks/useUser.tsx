@@ -1,29 +1,33 @@
-import React, { useContext, useState } from "react";
+import React, { Dispatch, SetStateAction, useContext, useState } from "react";
 
 interface UserContext {
   loggedUser: string | null;
   setLoggedUser: (user: string | null) => void;
-  usersList: string[] | null
+  usersList: string[];
+  setUsersList: Dispatch<SetStateAction<string[]>>;
 }
 
 type ChildrenProvider = {
   children: React.ReactNode;
 };
 
-const usersList = ["Matias", "Angel", "Fede", "Otro Usuario"];
+const users = ["Matias", "Angel", "Fede", "Otro Usuario"];
 
 export const UserContext = React.createContext<UserContext>({
   loggedUser: null,
   setLoggedUser: () => {},
-  usersList: []
+  usersList: [],
+  setUsersList: () => {}
 });
 
 export const UserProvider = ({ children }: ChildrenProvider) => {
   const [loggedUser, setLoggedUser] = useState<string | null>(null);
-  const [userList, setUserList] = useState<string[] | null>(usersList)
+  const [usersList, setUsersList] = useState<string[]>(users);
 
   return (
-    <UserContext.Provider value={{ loggedUser, setLoggedUser, usersList: userList }}>
+    <UserContext.Provider
+      value={{ loggedUser, setLoggedUser, usersList, setUsersList }}
+    >
       {children}
     </UserContext.Provider>
   );
