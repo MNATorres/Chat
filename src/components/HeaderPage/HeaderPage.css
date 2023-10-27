@@ -1,4 +1,4 @@
-.headerPageContainer {
+.listUserss {
   background-color: #26295b;
   padding: 11px 30px;
   display: flex;
@@ -10,11 +10,11 @@
   width: 100%;
 }
 
-.headerPageContainer div:first-child {
+.listUserss div:first-child {
   z-index: 11;
 }
 
-.headerPageContainer button {
+.listUserss button {
   width: 100px;
   height: 40px;
   background-color: unset;
@@ -24,7 +24,7 @@
   transition: all ease 0.3s;
 }
 
-.headerPageContainer button:hover {
+.listUserss button:hover {
   color: rgb(219, 216, 216);
   cursor: pointer;
 }
