@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { UserContext } from "./UserContext";
+import { UserContext } from "./useUser";
 
 type PropsMessages = {
   _id: string;
@@ -124,8 +124,6 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     setCloseChatHeader(!closeChatHeader);
   };
 
-  console.log(loggedUser);
-
   return (
     <ChatContext.Provider
       value={{
@@ -146,4 +144,12 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
       {children}
     </ChatContext.Provider>
   );
+};
+
+export const useChat = () => {
+  const context = useContext(ChatContext);
+  if (context === null) {
+    throw new Error("useUser must be used within a UserProvider");
+  }
+  return context;
 };

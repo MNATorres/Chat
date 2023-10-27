@@ -1,16 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./HeaderPage.css";
 import { TiMessages } from "react-icons/ti";
-import { ChatContext } from "../../hooks/ChatContext";
-import { UserContext } from "../../hooks/UserContext";
+import { useChat } from "../../hooks/useChat";
+import { useUser } from "../../hooks/useUser";
 
 const usersList = ["Matias", "Ralph", "Angel", "Fede", "Otro Usuario"];
 
 export default function HeaderPage() {
-  const { handleCloseChatHeader, closeChatHeader } = useContext(ChatContext);
-  const { loggedUser, setLoggedUser } = useContext(UserContext);
-
-  console.log(loggedUser);
+  const { handleCloseChatHeader, closeChatHeader } = useChat();
+  const { setLoggedUser } = useUser();
 
   return (
     <div className="headerPageContainer">

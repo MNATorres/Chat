@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { ChatContext } from "../../../hooks/ChatContext";
+import React from "react";
+import { useChat } from "../../../hooks/useChat";
 import "./ChatMessage.css";
 
 //temp1.scrollBy(0,1000)
 
 export default function ChatMessage() {
-  const { messages, isCurrentUser, scrollRef } = useContext(ChatContext);
+  const { messages, isCurrentUser, scrollRef } = useChat();
 
   return (
     <div className="chatContainer" ref={scrollRef}>

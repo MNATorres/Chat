@@ -1,9 +1,9 @@
 import "./App.css";
 import React from "react";
-import { ChatProvider } from "./hooks/ChatContext";
+import { ChatProvider } from "./hooks/useChat";
 import HeaderPage from "./components/HeaderPage/HeaderPage";
 import Chats from "./components/Chat/Chats";
-import { UserProvider } from "./hooks/UserContext";
+import { UserProvider } from "./hooks/useUser";
 
 function App() {
   return (

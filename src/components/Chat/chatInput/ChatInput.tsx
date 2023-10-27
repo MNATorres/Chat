@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./ChatInput.css";
 import { IoMdSend } from "react-icons/io";
-import { ChatContext } from "../../../hooks/ChatContext";
+import { useChat } from "../../../hooks/useChat";
 
 export default function ChatInput() {
-  const { handleChange, handleSubmit, text, handleKeyDown } =
-    useContext(ChatContext);
+  const { handleChange, handleSubmit, text, handleKeyDown } = useChat();
 
   return (
     <div className="inputContainer">

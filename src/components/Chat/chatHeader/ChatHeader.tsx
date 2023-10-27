@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./ChatHeader.css";
 import { BiSupport } from "react-icons/bi";
 import { MdOutlineClose } from "react-icons/md";
-import { ChatContext } from "../../../hooks/ChatContext";
+import { useChat } from "../../../hooks/useChat";
 
 export default function HeaderChat() {
-  const { handleClose, currentUser } = useContext(ChatContext);
+  const { handleClose, currentUser } = useChat();
 
   return (
     <div className="headerChat" onClick={handleClose}>

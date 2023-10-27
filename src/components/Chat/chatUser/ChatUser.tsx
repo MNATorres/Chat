@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./ChatUser.css";
 import ChatHeader from "../chatHeader/ChatHeader";
 import ChatMessage from "../chatMessage/ChatMessage";
 import ChatInput from "../chatInput/ChatInput";
-import { ChatContext } from "../../../hooks/ChatContext";
+import { useChat } from "../../../hooks/useChat";
 import ChatMovil from "../chatMovil/ChatMovil";
 
 export default function ChatUser() {
-  const { isClose } = useContext(ChatContext);
+  const { isClose } = useChat();
 
   return (
     <div>
@@ -24,5 +24,3 @@ export default function ChatUser() {
     </div>
   );
 }
-
-//<MdChat className="iconCloseChat" />
