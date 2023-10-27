@@ -1,13 +1,16 @@
-.listUserss {
+.headerPage {
   background-color: #26295b;
-  padding: 11px 30px;
   display: flex;
-  align-items: end;
-  max-height: 66px;
-  min-height: 66px;
-  flex-direction: column;
-  position: fixed;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
+  padding: 10px 20px;
+  color: white;
+}
+
+.listUserss {
+  display: flex;
+  flex-direction: column;
 }
 
 .listUserss div:first-child {
@@ -15,7 +18,6 @@
 }
 
 .listUserss button {
-  width: 100px;
   height: 40px;
   background-color: unset;
   border-style: none;
@@ -30,6 +32,9 @@
 }
 
 .messagesContainer {
+  position: fixed;
+  top: 45px;
+  right: 2px;
   margin-top: 13px;
   color: black;
   padding: 5px;
@@ -42,6 +47,9 @@
 }
 
 .closMessagesContainer {
+  position: absolute;
+  top: 45px;
+  right: 2px;
   margin-top: 13px;
   opacity: 0;
   padding: 10px;

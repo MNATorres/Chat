@@ -6,7 +6,8 @@ import ListUsers from "./ListUsers";
 export default function HeaderPage() {
   
   return (
-    <div>
+    <div className="headerPage">
+      <h3>Chat App</h3>
      <ListUsers />
     </div>
   );

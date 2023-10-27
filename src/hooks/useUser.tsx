@@ -10,7 +10,7 @@ type ChildrenProvider = {
   children: React.ReactNode;
 };
 
-const usersList = ["Matias", "Ralph", "Angel", "Fede", "Otro Usuario"];
+const usersList = ["Matias", "Angel", "Fede", "Otro Usuario"];
 
 export const UserContext = React.createContext<UserContext>({
   loggedUser: null,
