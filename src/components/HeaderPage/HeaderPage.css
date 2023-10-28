@@ -13,11 +13,13 @@
 }
 
 .currentUserHeaderPage {
+  min-width: 40%;
   padding: 0 15px;
   cursor: pointer;
   font-weight: bold;
   transition: all 500ms;
   overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .currentUserHeaderPage:hover {
