@@ -1,24 +1,24 @@
 import React from "react";
-import "./ChatUser.css";
 import ChatHeader from "../chatHeader/ChatHeader";
 import ChatMessage from "../chatBody/ChatMessage";
 import ChatInput from "../chatInput/ChatInput";
 import { useChat } from "../../../hooks/useChat";
 import ChatMovil from "../chatMovil/ChatMovil";
+import style from './styles.module.scss'
 
 export default function ChatUser() {
   const { isClose } = useChat();
 
   return (
     <div>
-      <div className={isClose ? "noOpenChat" : "openChat"}>
+      <div className={isClose ? style.noOpenChat : style.openChat}>
         <ChatHeader />
-        <div className="bodyChat">
+        <div className={style.bodyChat}>
           <ChatMessage />
           <ChatInput />
         </div>
       </div>
-      <div className={isClose ? "chatMovil" : "closeChatMovil"}>
+      <div className={isClose ? style.chatMovil : style.closeChatMovil}>
         <ChatMovil />
       </div>
     </div>

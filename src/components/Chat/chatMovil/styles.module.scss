@@ -1,4 +1,4 @@
-.close-chat-container {
+.closeChatContainer {
   background-color: #1976d2;
   
   width: 70px;
@@ -12,7 +12,7 @@
   border-radius: 70px;
   transition: width 0.2s, height 0.2s;
 }
-.close-chat-container:hover {
+.closeChatContainer:hover {
   width: 75px;
   height: 75px;
   border-radius: 75px;

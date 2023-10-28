@@ -1,15 +1,15 @@
 import React from "react";
-import "./HeaderPage.css";
 import ListUsers from "./ListUsers";
 import { useChat } from "../../hooks/useChat";
 import { maxLengthNameHeader } from "../../utils/maxLengthName";
+import style from "./styles.module.scss";
 
 export default function HeaderPage() {
   const { currentUser, handleClose } = useChat();
   return (
-    <div className="headerPage">
+    <div className={style.headerPage}>
       <h3>Chat App</h3>
-      <p className="currentUserHeaderPage" onClick={handleClose}>
+      <p className={style.currentUserHeaderPage} onClick={handleClose}>
         {currentUser && maxLengthNameHeader(currentUser)}
       </p>
       <ListUsers />

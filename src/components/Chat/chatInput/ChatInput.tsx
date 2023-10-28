@@ -1,15 +1,15 @@
 import React from "react";
-import "./ChatInput.css";
 import { IoMdSend } from "react-icons/io";
 import { useChat } from "../../../hooks/useChat";
+import style from "./style.module.scss";
 
 export default function ChatInput() {
   const { handleChange, handleSubmit, text, handleKeyDown } = useChat();
 
   return (
-    <div className="inputContainer">
+    <div className={style.inputContainer}>
       <form onSubmit={handleSubmit}>
-        <div className="textContainer">
+        <div className={style.textContainer}>
           <textarea
             onKeyDown={handleKeyDown}
             onChange={handleChange}
@@ -17,7 +17,7 @@ export default function ChatInput() {
             placeholder="Aa"
           ></textarea>
           <button type="submit" aria-label="Enviar mensaje">
-            <IoMdSend className="iconSend" />
+            <IoMdSend className={style.iconSend} />
           </button>
         </div>
       </form>
