@@ -5,7 +5,7 @@ import { TiMessages } from "react-icons/ti";
 import { useChat } from "../../hooks/useChat";
 
 export default function Login() {
-  const { handleCloseChatHeader, currentUser } = useChat();
+  const { handleCloseListUsers, currentUser, handleClose } = useChat();
 
   return (
     <div className={style.containerLogin}>
@@ -17,13 +17,13 @@ export default function Login() {
         <InputName />
         {currentUser && (
           <p>
-            Ahora interactuas como <span className={style.currentUser}>{currentUser}</span>
+            Ahora interactuas como <span onClick={handleClose} className={style.currentUser}>{currentUser}</span>
           </p>
         )}
         <div className={style.note}>
           <p>
             Tu usuario quedará registrado en
-            <button className={style.messages} onClick={handleCloseChatHeader}>
+            <button className={style.messages} onClick={handleCloseListUsers}>
               <TiMessages />
             </button>
             para cuando quieras enviar nuevamente mensajes

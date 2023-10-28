@@ -1,5 +1,5 @@
 .chatContainer {
-  max-height: 340px;
+  max-height: 80%;
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
@@ -46,4 +46,10 @@
 .text {
   font-size: 14px;
   line-height: 1.5;
+}
+
+@media screen and (max-width: 500px) {
+  .chatContainer {
+    max-height: 75%;
+  }
 }

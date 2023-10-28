@@ -12,6 +12,15 @@
   width: 15%;
 }
 
+.currentUserHeaderPage{
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.currentUserHeaderPage:hover{
+  color: #1976d2;
+}
+
 .listUsers {
   display: flex;
   flex-direction: column;

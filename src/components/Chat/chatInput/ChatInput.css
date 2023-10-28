@@ -1,6 +1,7 @@
 .inputContainer {
   background-color: #343541;
-  height: 20%;
+  height: 200px;
+  width: 100%;
   border-top: 1px solid #b4b6b8;
   padding-top: 10px;
   display: flex;

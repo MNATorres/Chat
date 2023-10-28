@@ -19,8 +19,8 @@ interface ChatContext {
   text: string;
   handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   scrollRef: React.RefObject<HTMLDivElement> | null;
-  handleCloseChatHeader: () => void;
-  closeChatHeader: boolean;
+  handleCloseListUsers: () => void;
+  closeListUsers: boolean;
 }
 
 export const ChatContext = React.createContext<ChatContext>({
@@ -34,8 +34,8 @@ export const ChatContext = React.createContext<ChatContext>({
   text: "",
   handleKeyDown: (_event: React.KeyboardEvent<HTMLTextAreaElement>) => {},
   scrollRef: null,
-  handleCloseChatHeader: () => {},
-  closeChatHeader: false,
+  handleCloseListUsers: () => {},
+  closeListUsers: false,
 });
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
@@ -43,7 +43,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const [messages, setMessages] = useState<any[]>([]);
   const [textValue, setTextValue] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [closeChatHeader, setCloseChatHeader] = useState(false);
+  const [closeListUsers, setCloseListUsers] = useState(false);
   const { loggedUser } = useContext(UserContext);
   const intervalRef = useRef<any>(null);
 
@@ -136,8 +136,8 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const handleCloseChatHeader = () => {
-    setCloseChatHeader(!closeChatHeader);
+  const handleCloseListUsers = () => {
+    setCloseListUsers(!closeListUsers);
   };
 
   return (
@@ -153,8 +153,8 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
         text: textValue,
         handleKeyDown,
         scrollRef,
-        handleCloseChatHeader,
-        closeChatHeader,
+        handleCloseListUsers,
+        closeListUsers,
       }}
     >
       {children}

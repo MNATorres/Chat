@@ -4,19 +4,19 @@ import { useChat } from "../../hooks/useChat";
 import { useUser } from "../../hooks/useUser";
 
 export default function ListUsers() {
-  const { handleCloseChatHeader, closeChatHeader } = useChat();
+  const { handleCloseListUsers, closeListUsers } = useChat();
   const { setLoggedUser, usersList } = useUser();
 
   return (
     <div className="listUsers">
       <div className="flexMovil">
-        <button onClick={handleCloseChatHeader}>
+        <button onClick={handleCloseListUsers}>
           <TiMessages />
         </button>
       </div>
       <div
         className={
-          closeChatHeader ? "messagesContainer ultext" : "closMessagesContainer"
+          closeListUsers ? "messagesContainer ultext" : "closMessagesContainer"
         }
       >
         <ul className="ulChatHeader">
