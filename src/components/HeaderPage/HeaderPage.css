@@ -15,6 +15,7 @@
 .currentUserHeaderPage{
   cursor: pointer;
   font-weight: bold;
+  transition: all 500ms;
 }
 
 .currentUserHeaderPage:hover{

@@ -36,6 +36,11 @@ export default function InputName() {
             variant="standard"
             value={user}
             onChange={handleChangeUser}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                handleAddUser();
+              }
+            }}
           />
         </Box>
         <Button

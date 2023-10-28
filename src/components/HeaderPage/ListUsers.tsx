@@ -1,5 +1,5 @@
 import React from "react";
-import { TiMessages } from "react-icons/ti";
+import { FaUserFriends } from "react-icons/fa";
 import { useChat } from "../../hooks/useChat";
 import { useUser } from "../../hooks/useUser";
 
@@ -11,7 +11,7 @@ export default function ListUsers() {
     <div className="listUsers">
       <div className="flexMovil">
         <button onClick={handleCloseListUsers}>
-          <TiMessages />
+          <FaUserFriends />
         </button>
       </div>
       <div

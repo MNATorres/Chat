@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./style.module.scss";
 import InputName from "./InputNameLogin";
-import { TiMessages } from "react-icons/ti";
+import { FaUserFriends } from "react-icons/fa";
 import { useChat } from "../../hooks/useChat";
 
 export default function Login() {
@@ -14,7 +14,7 @@ export default function Login() {
           <h3>Bienvenido!</h3>
           <h4>Registra tu nombre para dejar un mensaje</h4>
         </div>
-        <InputName />
+        {!currentUser && <InputName />}
         {currentUser && (
           <p>
             Ahora interactuas como <span onClick={handleClose} className={style.currentUser}>{currentUser}</span>
@@ -23,9 +23,9 @@ export default function Login() {
         <div className={style.note}>
           <p>
             Tu usuario quedará registrado en
-            <button className={style.messages} onClick={handleCloseListUsers}>
-              <TiMessages />
-            </button>
+            <span className={style.messages} onClick={handleCloseListUsers}>
+              <FaUserFriends className={style.iconUser} />
+            </span>
             para cuando quieras enviar nuevamente mensajes
           </p>
         </div>
