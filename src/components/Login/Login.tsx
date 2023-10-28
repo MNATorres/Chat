@@ -3,6 +3,7 @@ import style from "./style.module.scss";
 import InputName from "./InputNameLogin";
 import { FaUserFriends } from "react-icons/fa";
 import { useChat } from "../../hooks/useChat";
+import { maxLengthNameLogins } from "../../utils/maxLengthName";
 
 export default function Login() {
   const { handleCloseListUsers, currentUser, handleClose } = useChat();
@@ -17,7 +18,10 @@ export default function Login() {
         {!currentUser && <InputName />}
         {currentUser && (
           <p>
-            Ahora interactuas como <span onClick={handleClose} className={style.currentUser}>{currentUser}</span>
+            Ahora interactuas como{" "}
+            <span onClick={handleClose} className={style.currentUser}>
+              {maxLengthNameLogins(currentUser)}
+            </span>
           </p>
         )}
         <div className={style.note}>

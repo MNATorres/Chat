@@ -1,6 +1,7 @@
 import React from "react";
 import { useChat } from "../../../hooks/useChat";
 import "./ChatMessage.css";
+import { maxLengthNameMessage } from "../../../utils/maxLengthName";
 
 //temp1.scrollBy(0,1000)
 
@@ -15,7 +16,9 @@ export default function ChatMessage() {
           key={message._id}
         >
           <div className="meta">
-            <span className="sender">{message.sender}</span>
+            <span className="sender">
+              {maxLengthNameMessage(message.sender)}
+            </span>
             <span className="timestamp">{message.timestamp}</span>
           </div>
           <div className="text">{message.text}</div>

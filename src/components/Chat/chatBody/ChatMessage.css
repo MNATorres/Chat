@@ -9,6 +9,17 @@
   background-color: #343541;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.chatContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.chatContainer {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .left,
 .right {
   max-width: 70%;
@@ -36,6 +47,7 @@
   font-weight: bold;
   margin-right: 8px;
   font-size: 14px;
+  max-width: 80%;
 }
 
 .meta .timestamp {
