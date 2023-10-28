@@ -1,27 +1,27 @@
 import React from "react";
-import "./ChatHeader.css";
 import { BiSupport } from "react-icons/bi";
 import { MdOutlineClose } from "react-icons/md";
 import { useChat } from "../../../hooks/useChat";
+import style from './style.module.scss'
 
 export default function HeaderChat() {
-  const { handleClose, currentUser } = useChat();
+  const { handleClose, currentUser, isClose } = useChat();
 
   return (
-    <div className="headerChat" onClick={handleClose}>
-      <div className="user">
-        <BiSupport className="iconHeader" />
-        <div className="userState">
+    <div className={isClose ? style.headerChatClose : style.headerChat} onClick={handleClose}>
+      <div className={style.user}>
+        <BiSupport className={style.iconHeader} />
+        <div className={style.userState}>
           <p>{currentUser}</p>
-          <div className="isActive">
+          <div className={style.isActive}>
             <div></div>
             <p>Activo</p>
           </div>
         </div>
       </div>
-      <div className="close-chat">
+      <div className={style.closeChat}>
         <button onClick={handleClose}>
-          <MdOutlineClose className="close-icon" />
+          <MdOutlineClose className={style.closeIcon} />
         </button>
       </div>
     </div>

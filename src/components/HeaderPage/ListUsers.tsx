@@ -5,11 +5,11 @@ import { useUser } from "../../hooks/useUser";
 
 export default function ListUsers() {
   const { handleCloseChatHeader, closeChatHeader } = useChat();
-  const { setLoggedUser, usersList: usersList } = useUser();
+  const { setLoggedUser, usersList } = useUser();
 
   return (
-    <div className="listUserss">
-      <div>
+    <div className="listUsers">
+      <div className="flexMovil">
         <button onClick={handleCloseChatHeader}>
           <TiMessages />
         </button>
@@ -20,9 +20,9 @@ export default function ListUsers() {
         }
       >
         <ul className="ulChatHeader">
-          {usersList?.map((user) => {
+          {usersList?.map((user, i) => {
             return (
-              <li key={user} onClick={() => setLoggedUser(user)}>
+              <li key={i} onClick={() => setLoggedUser(user)}>
                 {user}
               </li>
             );

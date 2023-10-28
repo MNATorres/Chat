@@ -1,5 +1,5 @@
 .inputContainer {
-  background-color: #d9d9e3;
+  background-color: #343541;
   height: 20%;
   border-top: 1px solid #b4b6b8;
   padding-top: 10px;
@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: #d9d9e3;
+  background-color: #343541;
 }
 
 .textContainer button {
@@ -23,7 +23,8 @@
 }
 
 .textContainer textarea {
-  background-color: #d9d9e3;
+  background-color: #343541;
+  color: #e3e6e9;
   width: 100%;
   max-width: 85%;
   min-width: 85%;

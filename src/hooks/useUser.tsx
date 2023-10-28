@@ -5,6 +5,8 @@ interface UserContext {
   setLoggedUser: (user: string | null) => void;
   usersList: string[];
   setUsersList: Dispatch<SetStateAction<string[]>>;
+  user: string;
+  setUser: Dispatch<SetStateAction<string>>;
 }
 
 type ChildrenProvider = {
@@ -17,16 +19,19 @@ export const UserContext = React.createContext<UserContext>({
   loggedUser: null,
   setLoggedUser: () => {},
   usersList: [],
-  setUsersList: () => {}
+  setUsersList: () => {},
+  user: "",
+  setUser: () => {},
 });
 
 export const UserProvider = ({ children }: ChildrenProvider) => {
   const [loggedUser, setLoggedUser] = useState<string | null>(null);
   const [usersList, setUsersList] = useState<string[]>(users);
+  const [user, setUser] = useState("");
 
   return (
     <UserContext.Provider
-      value={{ loggedUser, setLoggedUser, usersList, setUsersList }}
+      value={{ loggedUser, setLoggedUser, usersList, setUsersList, user, setUser }}
     >
       {children}
     </UserContext.Provider>

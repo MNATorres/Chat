@@ -2,6 +2,11 @@
     max-width: 1300px;
     margin: 30px auto;
     padding: 10px;
+    display: flex;
+
+    @media screen and (max-width: 500px) {
+        justify-content: center;
+    }
 }
 
 .login{
@@ -20,6 +25,12 @@
     background-image: url('https://img.freepik.com/vector-gratis/fondo-geometrico_53876-115958.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+
+    .currentUser{
+        font-weight: bold;
+        color: rgb(10, 10, 180);
+        text-decoration: underline;
+    }
 
     .note p{
         text-align: center;

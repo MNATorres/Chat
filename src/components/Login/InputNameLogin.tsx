@@ -4,23 +4,24 @@ import TextField from "@mui/material/TextField";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Button } from "@mui/material";
 import { useUser } from "../../hooks/useUser";
-import { useState } from "react";
 
 export default function InputName() {
-const {usersList, setUsersList} = useUser()
-const [text, setText] = useState("")
+  const { usersList, setUsersList, user, setUser, setLoggedUser } = useUser();
 
-const handleAddUser = () => {
-  if (text.trim() !== "") {
-    setUsersList([...usersList, text]);
-    setText("");
-  }
-}
+  const handleAddUser = () => {
+    if (user.trim() !== "") {
+      setUsersList([...usersList, user]);
+      setLoggedUser(user);
+      setUser("");
+    }
+  };
 
-const handleChangeUser = (e: { currentTarget: { value: React.SetStateAction<string>; }; }) => {
-  setText(e.currentTarget.value)
-  console.log(text)
-}
+  const handleChangeUser = (e: {
+    currentTarget: { value: React.SetStateAction<string> };
+  }) => {
+    setUser(e.currentTarget.value);
+    console.log(user);
+  };
 
   return (
     <Box sx={{ "& > :not(style)": { m: 1 } }}>
@@ -33,11 +34,15 @@ const handleChangeUser = (e: { currentTarget: { value: React.SetStateAction<stri
             id="input-with-sx"
             label="Ingresa tu nombre..."
             variant="standard"
-            value={text}
+            value={user}
             onChange={handleChangeUser}
           />
         </Box>
-        <Button onClick={handleAddUser} sx={{ marginTop: "10px" }} variant="contained">
+        <Button
+          onClick={handleAddUser}
+          sx={{ marginTop: "10px" }}
+          variant="contained"
+        >
           Login
         </Button>
       </Box>

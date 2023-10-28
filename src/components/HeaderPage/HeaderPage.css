@@ -8,16 +8,26 @@
   color: white;
 }
 
-.listUserss {
-  display: flex;
-  flex-direction: column;
+.headerPage h3 {
+  width: 15%;
 }
 
-.listUserss div:first-child {
+.listUsers {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+}
+
+.flexMovil{
+  display: flex;
+  justify-content: end;
+}
+
+.listUsers div:first-child {
   z-index: 11;
 }
 
-.listUserss button {
+.listUsers button {
   height: 40px;
   background-color: unset;
   border-style: none;
@@ -26,7 +36,7 @@
   transition: all ease 0.3s;
 }
 
-.listUserss button:hover {
+.listUsers button:hover {
   color: rgb(219, 216, 216);
   cursor: pointer;
 }
@@ -44,6 +54,7 @@
   background-color: #e6e6eb;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition: all 0.3s;
+  z-index: 20;
 }
 
 .closMessagesContainer {
@@ -93,4 +104,25 @@
   background-color: rgba(133, 127, 127, 0.2);
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .headerPage {
+    padding: 10px 5px;
+  }
+
+  .headerPage h3 {
+    width: 25%;
+  }
+
+  .listUsers {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+  }
+
+  .flexMovil{
+    display: flex;
+    justify-content: end;
+  }
 }

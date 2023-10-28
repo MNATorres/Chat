@@ -1,7 +1,7 @@
 import React from "react";
 import "./ChatUser.css";
 import ChatHeader from "../chatHeader/ChatHeader";
-import ChatMessage from "../chatMessage/ChatMessage";
+import ChatMessage from "../chatBody/ChatMessage";
 import ChatInput from "../chatInput/ChatInput";
 import { useChat } from "../../../hooks/useChat";
 import ChatMovil from "../chatMovil/ChatMovil";

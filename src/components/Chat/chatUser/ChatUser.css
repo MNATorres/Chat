@@ -2,7 +2,7 @@
 
 .openChat {
   font-family: "Assistant", sans-serif;
-  background-color: rgb(242, 248, 250);
+  background-color: #343541;
   width: 350px;
   height: 480px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -13,7 +13,7 @@
 
 .noOpenChat {
   font-family: "Assistant", sans-serif;
-  background-color: #26295b;
+  background-color: #1976d2;
   width: 350px;
   height: 60px;
   display: flex;
@@ -21,6 +21,7 @@
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
   transition: all 50ms ease-in-out;
+  cursor: pointer;
 }
 
 .noOpenChat .bodyChat {
