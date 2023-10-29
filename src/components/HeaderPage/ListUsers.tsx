@@ -5,14 +5,14 @@ import { useUser } from "../../hooks/useUser";
 import style from "./styles.module.scss";
 
 export default function ListUsers() {
-  const { handleCloseListUsers, closeListUsers } = useChat();
+  const { handleCloseListUsers, closeListUsers, setCloseListUsers } = useChat();
   const { setLoggedUser, usersList } = useUser();
   const listUsersRef = useRef<any>(null);
 
   useEffect(() => {
     const handleOutsideClick = (e: { target: any }) => {
       if (listUsersRef.current && !listUsersRef.current.contains(e.target)) {
-        handleCloseListUsers();
+        setCloseListUsers(false);
       }
     };
     document.addEventListener("mousedown", handleOutsideClick);

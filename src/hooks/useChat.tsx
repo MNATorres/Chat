@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState, Dispatch } from "react";
 import { useUser } from "./useUser";
 
 type PropsMessages = {
@@ -21,6 +21,8 @@ interface ChatContext {
   scrollRef: React.RefObject<HTMLDivElement> | null;
   handleCloseListUsers: () => void;
   closeListUsers: boolean;
+  setCloseListUsers: React.Dispatch<React.SetStateAction<boolean>>
+
 }
 
 export const ChatContext = React.createContext<ChatContext>({
@@ -36,6 +38,7 @@ export const ChatContext = React.createContext<ChatContext>({
   scrollRef: null,
   handleCloseListUsers: () => {},
   closeListUsers: false,
+  setCloseListUsers: () => {}
 });
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
@@ -157,6 +160,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
         scrollRef,
         handleCloseListUsers,
         closeListUsers,
+        setCloseListUsers
       }}
     >
       {children}
