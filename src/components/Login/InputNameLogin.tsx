@@ -13,7 +13,6 @@ export default function InputName() {
     currentTarget: { value: React.SetStateAction<string> };
   }) => {
     setUser(e.currentTarget.value);
-    console.log(user);
   };
 
   return (

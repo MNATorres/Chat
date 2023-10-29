@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { UserContext } from "./useUser";
+import { UserContext, useUser } from "./useUser";
 
 type PropsMessages = {
   _id: string;
@@ -40,12 +40,12 @@ export const ChatContext = React.createContext<ChatContext>({
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const [isClose, setIsClose] = useState(true);
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<PropsMessages[]>([]);
   const [textValue, setTextValue] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const [closeListUsers, setCloseListUsers] = useState(false);
-  const { loggedUser } = useContext(UserContext);
-  const intervalRef = useRef<any>(null);
+  const { loggedUser } = useUser();
+  const intervalRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (intervalRef.current === null) {

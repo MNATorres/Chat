@@ -4,23 +4,28 @@ import React, {
   useContext,
   useState,
   useEffect,
+  useRef,
 } from "react";
-
-interface UserContext {
-  loggedUser: string | null;
-  setLoggedUser: (user: string | null) => void;
-  usersList: string[];
-  setUsersList: Dispatch<SetStateAction<string[]>>;
-  user: string;
-  setUser: Dispatch<SetStateAction<string>>;
-  handleAddUser: () => void;
-}
+import { v4 as uuidv4 } from "uuid";
 
 type ChildrenProvider = {
   children: React.ReactNode;
 };
 
-const listUsers = ["matias", "otro usuario", "y otro mas"]
+interface usersProps {
+  user: string;
+  _id: string;
+}
+
+interface UserContext {
+  loggedUser: string | null;
+  setLoggedUser: (user: string | null) => void;
+  usersList: usersProps[];
+  setUsersList: Dispatch<SetStateAction<usersProps[]>>;
+  user: string;
+  setUser: Dispatch<SetStateAction<string>>;
+  handleAddUser: () => void;
+}
 
 export const UserContext = React.createContext<UserContext>({
   loggedUser: null,
@@ -34,8 +39,25 @@ export const UserContext = React.createContext<UserContext>({
 
 export const UserProvider = ({ children }: ChildrenProvider) => {
   const [loggedUser, setLoggedUser] = useState<string | null>(null);
-  const [usersList, setUsersList] = useState<string[]>(listUsers);
+  const [usersList, setUsersList] = useState<usersProps[]>([]);
   const [user, setUser] = useState("");
+  const intervalRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (intervalRef.current === null) {
+      intervalRef.current = setInterval(() => {
+        loadUsers();
+      }, 1000);
+    }
+    loadUsers();
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, []);
 
   const loadUsers = () => {
     fetch("https://chat-back-three.vercel.app/api/users")
@@ -44,23 +66,19 @@ export const UserProvider = ({ children }: ChildrenProvider) => {
       })
       .then((data) => {
         setUsersList(data);
-        console.log("userLisst",usersList)
       });
   };
 
   useEffect(() => {
     loadUsers();
-  });
+  }, [user, loggedUser]);
 
   const handleAddUser = () => {
-    if (user.trim() !== "") {
-      setUsersList([...usersList, user]);
-      setLoggedUser(user);
-      setUser("");
-    }
+    if (user.trim() === "") return;
 
     const newUser = {
       user: user,
+      id: uuidv4(),
     };
 
     fetch("https://chat-back-three.vercel.app/api/user", {
@@ -70,7 +88,7 @@ export const UserProvider = ({ children }: ChildrenProvider) => {
         "Content-type": "application/json",
       },
     }).then((response) => response.json());
-
+    setLoggedUser(user);
     setUser("");
   };
 
