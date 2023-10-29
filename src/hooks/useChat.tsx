@@ -105,7 +105,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const handleSubmit = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (!loggedUser) {
-      alert("Por favor, selecciona un usuario");
+      alert("Por favor, ingresa tu usuario o selecciona uno de la lista");
       return;
     }
     if (textValue.trim() === "") return;
