@@ -28,7 +28,7 @@ export default function DataApp() {
 
   return (
     <div className={style.containerDataApp}>
-      <h4>Datos de la App</h4>
+      <h4>Application Data</h4>
       <ul>
         {dataApp?.map((data) => {
           return (

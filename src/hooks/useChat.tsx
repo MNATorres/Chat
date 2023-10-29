@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { UserContext, useUser } from "./useUser";
+import { useUser } from "./useUser";
 
 type PropsMessages = {
   _id: string;
