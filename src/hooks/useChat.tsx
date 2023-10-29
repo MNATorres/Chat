@@ -62,7 +62,6 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    loadMessages();
   }, []);
 
   const handleClose = () => {
