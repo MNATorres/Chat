@@ -61,7 +61,7 @@
   border: 1px solid rgb(22, 21, 21, 0.3);
   border-radius: 3px;
   width: 280px;
-  background-color: #e6e6eb;
+  background-color: #101010;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition: all 0.3s;
   z-index: 20;
@@ -111,6 +111,7 @@
   width: 95%;
   margin: 3px 0;
   text-decoration: none;
+  border-bottom: 1px solid #4d4b4b;
 }
 
 .ulChatHeader li:hover {

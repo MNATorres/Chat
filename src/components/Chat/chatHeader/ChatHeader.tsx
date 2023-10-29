@@ -14,7 +14,16 @@ export default function HeaderChat() {
       onClick={handleClose}
     >
       <div className={style.user}>
-        <BiSupport className={style.iconHeader} />
+        <div className={style.containerImageLogin}>
+          {!currentUser && (
+            <img
+              src="https://media4.giphy.com/media/X9jcycOeoT14CIKUuC/giphy.gif?cid=6c09b952a172rw149tdvkb09t8kyugt6lmmnv710x3eoxuuz&ep=v1_gifs_search&rid=giphy.gif&ct=s"
+              alt="message"
+              className={style.imageMessage}
+            />
+          )}
+          {currentUser && <p className={style.nameLetter}>{currentUser.slice(0, 1).toUpperCase()}</p>}
+        </div>
         <div className={style.userState}>
           <p>{currentUser && maxLengthNameChat(currentUser)}</p>
           <div className={style.isActive}>

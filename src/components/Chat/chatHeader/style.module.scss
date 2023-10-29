@@ -21,7 +21,7 @@
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  padding: 10px;
+  padding: 6px;
   display: flex;
   justify-content: space-between;
   font-size: 18px;
@@ -73,7 +73,24 @@
   font-size: 14px;
 }
 
-.iconHeader {
-  font-size: 39px;
-  margin-right: 15px;
+.containerImageLogin{
+  width: 45px;
+  height: 45px;
+  border: 1px solid white;
+  border-radius: 40px;
+  margin-right: 20px;
+  padding: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageMessage{
+  width: 100%;
+}
+
+.nameLetter{
+  font-size: 35px;
+  margin-bottom: 3.5px;
+  font-weight: bold;
 }

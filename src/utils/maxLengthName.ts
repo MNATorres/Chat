@@ -29,3 +29,11 @@ export const maxLengthNameMessage = (name: string) => {
     return name;
   }
 };
+
+export const maxLengthListName = (name: string) => {
+  if (name.length > 21) {
+    return name.slice(0, 21) + "...";
+  } else {
+    return name;
+  }
+};

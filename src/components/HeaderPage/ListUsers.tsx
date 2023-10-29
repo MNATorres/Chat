@@ -3,6 +3,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { useChat } from "../../hooks/useChat";
 import { useUser } from "../../hooks/useUser";
 import style from "./styles.module.scss";
+import { maxLengthListName } from "../../utils/maxLengthName";
 
 export default function ListUsers() {
   const { handleCloseListUsers, closeListUsers, setCloseListUsers } = useChat();
@@ -42,8 +43,9 @@ export default function ListUsers() {
                   setLoggedUser(user.user);
                   handleCloseListUsers();
                 }}
+                style={{color: user.color}}
               >
-                {user.user}
+                {maxLengthListName(user.user)}
               </li>
             );
           })}

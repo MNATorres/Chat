@@ -14,6 +14,7 @@ type ChildrenProvider = {
 
 interface usersProps {
   user: string;
+  color: string
   _id: string;
 }
 
@@ -61,13 +62,26 @@ export const UserProvider = ({ children }: ChildrenProvider) => {
     };
   }, []);
 
+  function getRandomColor(seed: string) {
+    const randomSeed = Array.from(seed).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const hue = (randomSeed % 360) + 1; 
+    return `hsl(${hue}, 70%, 50%)`; 
+  }
+  
   const loadUsers = () => {
     fetch("https://chat-back-three.vercel.app/api/users")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        setUsersList(data);
+        const coloredUsers = data.map((user: usersProps) => ({
+          ...user,
+          color: user._id ? getRandomColor(user._id.toString()) : 'defaultColor'
+        }));
+  
+        setUsersList(coloredUsers);
+        console.log(usersList);
+        
       });
   };
 
