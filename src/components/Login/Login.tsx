@@ -2,11 +2,14 @@ import React from "react";
 import style from "./style.module.scss";
 import InputName from "./InputNameLogin";
 import { FaUserFriends } from "react-icons/fa";
+import { AiOutlinePoweroff } from "react-icons/ai";
 import { useChat } from "../../hooks/useChat";
 import { maxLengthNameLogins } from "../../utils/maxLengthName";
+import { useUser } from "../../hooks/useUser";
 
 export default function Login() {
   const { handleCloseListUsers, currentUser, handleClose } = useChat();
+  const {handleLogout} = useUser()
 
   return (
     <div className={style.containerLogin}>
@@ -17,12 +20,15 @@ export default function Login() {
         </div>
         {!currentUser && <InputName />}
         {currentUser && (
-          <p>
-            Ahora interactuas como{" "}
-            <span onClick={handleClose} className={style.currentUser}>
-              {maxLengthNameLogins(currentUser)}
-            </span>
-          </p>
+          <div>
+            <p>
+              Ahora interactuas como{" "}
+              <span onClick={handleClose} className={style.currentUser}>
+                {maxLengthNameLogins(currentUser)}
+              </span>
+            </p>
+            <AiOutlinePoweroff onClick={handleLogout} className={style.logout} />
+          </div>
         )}
         <div className={style.note}>
           <p>

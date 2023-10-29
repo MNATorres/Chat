@@ -25,6 +25,7 @@ interface UserContext {
   user: string;
   setUser: Dispatch<SetStateAction<string>>;
   handleAddUser: () => void;
+  handleLogout:() => void
 }
 
 export const UserContext = React.createContext<UserContext>({
@@ -35,6 +36,7 @@ export const UserContext = React.createContext<UserContext>({
   user: "",
   setUser: () => {},
   handleAddUser: () => {},
+  handleLogout: () => {}
 });
 
 export const UserProvider = ({ children }: ChildrenProvider) => {
@@ -92,6 +94,10 @@ export const UserProvider = ({ children }: ChildrenProvider) => {
     setUser("");
   };
 
+  const handleLogout = () => {
+    setLoggedUser("")
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -102,6 +108,7 @@ export const UserProvider = ({ children }: ChildrenProvider) => {
         user,
         setUser,
         handleAddUser,
+        handleLogout
       }}
     >
       {children}

@@ -35,6 +35,18 @@
     max-width: 100%;
   }
 
+  .logout {
+    font-size: 50px;
+    cursor: pointer;
+    transition: all 500ms;
+    color: #707079;
+    margin-top: 10px;
+
+    &:hover {
+      color: red;
+    }
+  }
+
   .note p {
     text-align: center;
   }

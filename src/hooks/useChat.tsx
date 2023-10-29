@@ -46,27 +46,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const [closeListUsers, setCloseListUsers] = useState(false);
   const { loggedUser } = useUser();
   const intervalRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (intervalRef.current === null) {
-      intervalRef.current = setInterval(() => {
-        loadMessages();
-      }, 1000);
-    }
-    loadMessages();
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (scrollRef.current === null) return;
-    scrollRef.current.scrollBy(0, 10000000);
-  }, [messages, isClose]);
+  const [resetPosition, setResetPosition] = useState(true)
 
   const loadMessages = () => {
     fetch("https://chat-back-three.vercel.app/api/messages")
@@ -127,6 +107,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
       .then(() => loadMessages());
 
     setTextValue("");
+    setResetPosition(!resetPosition)
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -139,6 +120,27 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const handleCloseListUsers = () => {
     setCloseListUsers(!closeListUsers);
   };
+
+  useEffect(() => {
+    if (intervalRef.current === null) {
+      intervalRef.current = setInterval(() => {
+        loadMessages();
+      }, 1000);
+    }
+    loadMessages();
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (scrollRef.current === null) return;
+    scrollRef.current.scrollBy(0, 10000000);
+  }, [isClose, textValue, resetPosition]);
 
   return (
     <ChatContext.Provider
