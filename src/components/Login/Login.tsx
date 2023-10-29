@@ -9,7 +9,7 @@ import { useUser } from "../../hooks/useUser";
 
 export default function Login() {
   const { handleCloseListUsers, currentUser, handleClose } = useChat();
-  const {handleLogout} = useUser()
+  const { handleLogout } = useUser();
 
   return (
     <div className={style.containerLogin}>
@@ -27,7 +27,10 @@ export default function Login() {
                 {maxLengthNameLogins(currentUser)}
               </span>
             </p>
-            <AiOutlinePoweroff onClick={handleLogout} className={style.logout} />
+            <AiOutlinePoweroff
+              onClick={handleLogout}
+              className={style.logout}
+            />
           </div>
         )}
         <div className={style.note}>

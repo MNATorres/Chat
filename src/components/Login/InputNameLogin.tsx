@@ -8,7 +8,6 @@ import { useUser } from "../../hooks/useUser";
 export default function InputName() {
   const { user, setUser, handleAddUser } = useUser();
 
- 
   const handleChangeUser = (e: {
     currentTarget: { value: React.SetStateAction<string> };
   }) => {
@@ -28,7 +27,7 @@ export default function InputName() {
             variant="standard"
             value={user}
             onChange={handleChangeUser}
-            onKeyDown={(event) => {
+            onKeyDown={(event: { key: string }) => {
               if (event.key === "Enter") {
                 handleAddUser();
               }

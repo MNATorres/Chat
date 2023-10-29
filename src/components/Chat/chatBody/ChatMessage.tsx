@@ -1,7 +1,7 @@
 import React from "react";
 import { useChat } from "../../../hooks/useChat";
 import { maxLengthNameMessage } from "../../../utils/maxLengthName";
-import style from './styles.module.scss'
+import style from "./styles.module.scss";
 
 //temp1.scrollBy(0,1000)
 
