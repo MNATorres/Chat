@@ -1,31 +1,33 @@
-import React, { useContext } from 'react';
-import './ChatHeader.css'
-import { FaUser } from 'react-icons/fa'
-import { MdOutlineClose } from 'react-icons/md'
-import { ChatContext } from '../../../globalContext/ChatContext';
+import React from "react";
+import { BiSupport } from "react-icons/bi";
+import { MdOutlineClose } from "react-icons/md";
+import { useChat } from "../../../hooks/useChat";
+import style from "./style.module.scss";
+import { maxLengthNameChat } from "../../../utils/maxLengthName";
 
-
-//handleClose
 export default function HeaderChat() {
-  const { handleClose, currentUser } = useContext(ChatContext)
+  const { handleClose, currentUser, isClose } = useChat();
 
   return (
-    <div className='headerChat' onClick={handleClose}>
-      <div className="user">
-        <FaUser className='iconHeader' />
-        <div className="userState">
-          <p>{currentUser}</p>
-          <div className="isActive">
+    <div
+      className={isClose ? style.headerChatClose : style.headerChat}
+      onClick={handleClose}
+    >
+      <div className={style.user}>
+        <BiSupport className={style.iconHeader} />
+        <div className={style.userState}>
+          <p>{currentUser && maxLengthNameChat(currentUser)}</p>
+          <div className={style.isActive}>
             <div></div>
             <p>Activo</p>
           </div>
         </div>
       </div>
-      <div className="close-chat">
+      <div className={style.closeChat}>
         <button onClick={handleClose}>
-          <MdOutlineClose className="close-icon" />
+          <MdOutlineClose className={style.closeIcon} />
         </button>
       </div>
     </div>
-  )
+  );
 }

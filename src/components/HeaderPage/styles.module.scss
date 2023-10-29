@@ -1,0 +1,153 @@
+.headerPage {
+  background-color: #202123;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+  color: white;
+}
+
+.headerPage h3 {
+  width: 15%;
+}
+
+.currentUserHeaderPage {
+  min-width: 40%;
+  padding: 0 15px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 500ms;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.currentUserHeaderPage:hover {
+  color: #1976d2;
+}
+
+.listUsers {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+}
+
+.flexMovil {
+  display: flex;
+  justify-content: end;
+}
+
+.listUsers button {
+  height: 40px;
+  background-color: unset;
+  border-style: none;
+  color: white;
+  font-size: 40px;
+  transition: all ease 0.3s;
+}
+
+.listUsers button:hover {
+  color: rgb(219, 216, 216);
+  cursor: pointer;
+}
+
+.messagesContainer {
+  position: fixed;
+  top: 45px;
+  right: 2px;
+  margin-top: 13px;
+  color: black;
+  padding: 5px;
+  border: 1px solid rgb(22, 21, 21, 0.3);
+  border-radius: 3px;
+  width: 280px;
+  background-color: #e6e6eb;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 0.3s;
+  z-index: 20;
+  max-height: 40%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.closMessagesContainer {
+  position: absolute;
+  top: 45px;
+  right: 2px;
+  margin-top: 13px;
+  opacity: 0;
+  padding: 10px;
+  border: 1px solid #26295b;
+  color: black;
+  border-radius: 3px;
+  width: 0px;
+  height: 0px;
+  background-color: #26295b;
+  color: #26295b;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 0.3s;
+}
+
+.closMessagesContainer ul {
+  display: none;
+}
+
+.closMessagesContainer ul li {
+  display: none;
+}
+
+.ulChatHeader {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.ulChatHeader li {
+  color: black;
+  list-style: none;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  width: 95%;
+  margin: 3px 0;
+  text-decoration: none;
+}
+
+.ulChatHeader li:hover {
+  background-color: rgba(133, 127, 127, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .headerPage {
+    padding: 10px 5px;
+  }
+
+  .headerPage h3 {
+    width: 25%;
+  }
+
+  .listUsers {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+  }
+
+  .flexMovil {
+    display: flex;
+    justify-content: end;
+  }
+}
+
+@media screen and (max-width: 422px) {
+  .headerPage h3 {
+    width: 40%;
+  }
+
+  .listUsers {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+  }
+}

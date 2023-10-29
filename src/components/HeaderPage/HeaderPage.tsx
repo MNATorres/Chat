@@ -1,21 +1,18 @@
-import React, { useContext } from 'react'
-import './HeaderPage.css'
-import { ChatContext } from '../../globalContext/ChatContext'
-import cerrarSession from './../../img/cerrar.png'
-
-
+import React from "react";
+import ListUsers from "./ListUsers";
+import { useChat } from "../../hooks/useChat";
+import { maxLengthNameHeader } from "../../utils/maxLengthName";
+import style from "./styles.module.scss";
 
 export default function HeaderPage() {
-  const { handleCloseChatHeader } = useContext(ChatContext)
-
-
+  const { currentUser, handleClose } = useChat();
   return (
-    <div className='headerPageContainer'>
-      <div >
-        <button onClick={handleCloseChatHeader}>
-          <img className='cerrarSesionHeader' src={cerrarSession} alt="" />
-        </button>
-      </div>
+    <div className={style.headerPage}>
+      <h3>Chat App</h3>
+      <p className={style.currentUserHeaderPage} onClick={handleClose}>
+        {currentUser && maxLengthNameHeader(currentUser)}
+      </p>
+      <ListUsers />
     </div>
-  )
+  );
 }

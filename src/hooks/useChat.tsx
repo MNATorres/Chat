@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { UserContext } from './UserContext';
-
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { useUser } from "./useUser";
 
 type PropsMessages = {
   _id: string;
-  sender: string,
-  text: string,
-  timestamp: string
-}
-
+  sender: string;
+  text: string;
+  timestamp: string;
+};
 
 interface ChatContext {
   handleClose: () => void;
@@ -21,59 +19,40 @@ interface ChatContext {
   text: string;
   handleKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   scrollRef: React.RefObject<HTMLDivElement> | null;
-  handleCloseChatHeader: () => void
-  closeChatHeader: boolean
+  handleCloseListUsers: () => void;
+  closeListUsers: boolean;
+  setCloseListUsers: React.Dispatch<React.SetStateAction<boolean>>
+
 }
 
 export const ChatContext = React.createContext<ChatContext>({
-  handleClose: () => { },
+  handleClose: () => {},
   isClose: true,
   messages: [],
   currentUser: "",
   isCurrentUser: () => true,
-  handleChange: (_e: React.BaseSyntheticEvent) => { },
-  handleSubmit: (_e: React.BaseSyntheticEvent) => { },
+  handleChange: (_e: React.BaseSyntheticEvent) => {},
+  handleSubmit: (_e: React.BaseSyntheticEvent) => {},
   text: "",
-  handleKeyDown: (_event: React.KeyboardEvent<HTMLTextAreaElement>) => { },
+  handleKeyDown: (_event: React.KeyboardEvent<HTMLTextAreaElement>) => {},
   scrollRef: null,
-  handleCloseChatHeader: () => { },
-  closeChatHeader: false
-})
+  handleCloseListUsers: () => {},
+  closeListUsers: false,
+  setCloseListUsers: () => {}
+});
 
 export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const [isClose, setIsClose] = useState(true);
-  const [messages, setMessages] = useState<any[]>([]);
-  const [textValue, setTextValue] = useState('');
+  const [messages, setMessages] = useState<PropsMessages[]>([]);
+  const [textValue, setTextValue] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [closeChatHeader, setCloseChatHeader] = useState(false);
-  const { loggedUser } = useContext(UserContext);
-  const intervalRef = useRef<any>(null)
-
-  useEffect(() => {
-    if (intervalRef.current === null) {
-
-      intervalRef.current = setInterval(() => {
-        loadMessages()
-      }, 1000);
-    }
-    loadMessages();
-
-    return () => {
-      if (intervalRef.current) {
-
-        clearInterval(intervalRef.current);
-        intervalRef.current = null
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (scrollRef.current === null) return;
-    scrollRef.current.scrollBy(0, 10000000);
-  }, [messages, isClose]);
+  const [closeListUsers, setCloseListUsers] = useState(false);
+  const { loggedUser } = useUser();
+  const intervalRef = useRef<number | null>(null);
+  const [resetPosition, setResetPosition] = useState(true)
 
   const loadMessages = () => {
-    fetch('https://chat-back-three.vercel.app/api/messages')
+    fetch("https://chat-back-three.vercel.app/api/messages")
       .then((response) => {
         return response.json();
       })
@@ -99,17 +78,19 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
-    const timestamp = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+    const timestamp = `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}`;
     return timestamp;
   };
 
   const handleSubmit = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     if (!loggedUser) {
-      alert('Por favor, selecciona un usuario');
+      alert("Por favor, ingresa tu usuario o selecciona uno de la lista");
       return;
     }
-    if (textValue.trim() === '') return;
+    if (textValue.trim() === "") return;
 
     const newMessage = {
       sender: loggedUser,
@@ -117,34 +98,51 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
       text: textValue,
     };
 
-    fetch('https://chat-back-three.vercel.app/api/message', {
-      method: 'POST',
+    fetch("https://chat-back-three.vercel.app/api/message", {
+      method: "POST",
       body: JSON.stringify(newMessage),
       headers: {
-        'Content-type': 'application/json',
+        "Content-type": "application/json",
       },
     })
       .then((response) => response.json())
       .then(() => loadMessages());
 
-    setTextValue('');
+    setTextValue("");
+    setResetPosition(!resetPosition)
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       handleSubmit(event);
     }
   };
 
-  const handleCloseChatHeader = () => {
-    if (!loggedUser) {
-      alert('Por favor, selecciona un usuario');
-      return;
-    }
-    setCloseChatHeader(!closeChatHeader);
+  const handleCloseListUsers = () => {
+    setCloseListUsers(!closeListUsers);
   };
 
+  useEffect(() => {
+    if (intervalRef.current === null) {
+      intervalRef.current = setInterval(() => {
+        loadMessages();
+      }, 1000);
+    }
+    loadMessages();
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (scrollRef.current === null) return;
+    scrollRef.current.scrollBy(0, 10000000);
+  }, [isClose, textValue, resetPosition]);
 
   return (
     <ChatContext.Provider
@@ -159,11 +157,20 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
         text: textValue,
         handleKeyDown,
         scrollRef,
-        handleCloseChatHeader,
-        closeChatHeader,
+        handleCloseListUsers,
+        closeListUsers,
+        setCloseListUsers
       }}
     >
       {children}
     </ChatContext.Provider>
   );
+};
+
+export const useChat = () => {
+  const context = useContext(ChatContext);
+  if (context === null) {
+    throw new Error("useUser must be used within a UserProvider");
+  }
+  return context;
 };

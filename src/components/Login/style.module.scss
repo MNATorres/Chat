@@ -1,0 +1,69 @@
+.containerLogin {
+  max-width: 1300px;
+  margin: 30px auto;
+  padding: 10px;
+  display: flex;
+
+  @media screen and (max-width: 500px) {
+    justify-content: center;
+  }
+}
+
+.login {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  width: 30%;
+  max-width: 400px;
+  min-width: 300px;
+  height: 50vh;
+  min-height: 350px;
+  padding: 5px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-image: url("https://img.freepik.com/vector-gratis/fondo-geometrico_53876-115958.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .currentUser {
+    font-weight: bold;
+    color: rgb(10, 10, 180);
+    text-decoration: underline;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+
+  .logout {
+    font-size: 50px;
+    cursor: pointer;
+    transition: all 500ms;
+    color: #707079;
+    margin-top: 10px;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  .note p {
+    text-align: center;
+  }
+
+  .messages {
+    cursor: pointer;
+    padding: 0 5px;
+  }
+
+  .iconUser {
+    font-size: 20px;
+    margin-bottom: -4px;
+    transition: all 500ms;
+
+    &:hover {
+      color: #1976d2;
+    }
+  }
+}

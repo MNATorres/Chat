@@ -1,0 +1,25 @@
+.closeChatContainer {
+  background-color: #1976d2;
+  
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  bottom: 10px;
+  right: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 70px;
+  transition: width 0.2s, height 0.2s;
+}
+.closeChatContainer:hover {
+  width: 75px;
+  height: 75px;
+  border-radius: 75px;
+  cursor: pointer;
+}
+
+.iconCloseChat {
+  font-size: 40px;
+  color: white;
+}

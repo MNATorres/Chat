@@ -1,0 +1,79 @@
+.headerChatClose{
+  width: 100%;
+  height: 100%;
+  background-color: #1976d2;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: bold;
+  align-items: center;
+  cursor: pointer;
+  transition: all 500ms;
+}
+
+.headerChat {
+  width: 100%;
+  background-color: #1976d2;
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: bold;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user {
+  display: flex;
+}
+
+.isActive {
+  display: flex;
+  align-items: center;
+}
+
+.isActive div {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(13, 189, 13);
+  border-radius: 10px;
+  margin: 0 5px 2px 0;
+}
+
+.closeChat button {
+  background-color: unset;
+  border-style: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeChat button:hover {
+  background-color: rgb(155, 155, 155, 0.3);
+  cursor: pointer;
+}
+
+.closeIcon {
+  color: white;
+  font-size: 24px;
+}
+
+.userState p:last-child {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.iconHeader {
+  font-size: 39px;
+  margin-right: 15px;
+}

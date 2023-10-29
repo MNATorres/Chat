@@ -1,32 +1,26 @@
-import React, { useContext } from 'react'
-import './ChatUser.css'
-import ChatHeader from '../chatHeader/ChatHeader'
-import ChatMessage from '../chatMessage/ChatMessage'
-import ChatInput from '../chatInput/ChatInput'
-import { ChatContext } from '../../../globalContext/ChatContext'
-import ChatMovil from '../chatMovil/ChatMovil'
-
-
+import React from "react";
+import ChatHeader from "../chatHeader/ChatHeader";
+import ChatMessage from "../chatBody/ChatMessage";
+import ChatInput from "../chatInput/ChatInput";
+import { useChat } from "../../../hooks/useChat";
+import ChatMovil from "../chatMovil/ChatMovil";
+import style from './styles.module.scss'
 
 export default function ChatUser() {
-  const { isClose } = useContext(ChatContext)
+  const { isClose } = useChat();
 
   return (
     <div>
-      <div className={isClose ? "noOpenChat" : "openChat"}>
-        <ChatHeader  />
-        <div className="bodyChat">
+      <div className={isClose ? style.noOpenChat : style.openChat}>
+        <ChatHeader />
+        <div className={style.bodyChat}>
           <ChatMessage />
           <ChatInput />
         </div>
       </div>
-      <div className={isClose ? "chatMovil" : "closeChatMovil"}>
+      <div className={isClose ? style.chatMovil : style.closeChatMovil}>
         <ChatMovil />
       </div>
     </div>
-
-  )
+  );
 }
-
-
-//<MdChat className="iconCloseChat" />
