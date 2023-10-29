@@ -30,7 +30,7 @@ export default function DataApp() {
     <div className={style.containerDataApp}>
       <h4>Datos de la App</h4>
       <ul>
-        {dataApp.map((data) => {
+        {dataApp?.map((data) => {
           return (
             <li className={style.listData} key={data.id}>
               <p>

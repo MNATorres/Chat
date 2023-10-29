@@ -6,16 +6,9 @@ import { Button } from "@mui/material";
 import { useUser } from "../../hooks/useUser";
 
 export default function InputName() {
-  const { usersList, setUsersList, user, setUser, setLoggedUser } = useUser();
+  const { user, setUser, handleAddUser } = useUser();
 
-  const handleAddUser = () => {
-    if (user.trim() !== "") {
-      setUsersList([...usersList, user]);
-      setLoggedUser(user);
-      setUser("");
-    }
-  };
-
+ 
   const handleChangeUser = (e: {
     currentTarget: { value: React.SetStateAction<string> };
   }) => {

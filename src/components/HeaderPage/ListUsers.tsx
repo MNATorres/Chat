@@ -21,7 +21,7 @@ export default function ListUsers() {
         }
       >
         <ul className={style.ulChatHeader}>
-          {usersList?.map((user, i) => {
+          {usersList?.map((user,i) => {
             return (
               <li key={i} onClick={() => setLoggedUser(user)}>
                 {user}
