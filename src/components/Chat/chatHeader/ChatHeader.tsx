@@ -1,5 +1,4 @@
 import React from "react";
-import { BiSupport } from "react-icons/bi";
 import { MdOutlineClose } from "react-icons/md";
 import { useChat } from "../../../hooks/useChat";
 import style from "./style.module.scss";
