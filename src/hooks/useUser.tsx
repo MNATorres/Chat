@@ -14,7 +14,7 @@ type ChildrenProvider = {
 
 interface usersProps {
   user: string;
-  color: string
+  color: string;
   _id: string;
 }
 
@@ -26,7 +26,7 @@ interface UserContext {
   user: string;
   setUser: Dispatch<SetStateAction<string>>;
   handleAddUser: () => void;
-  handleLogout:() => void
+  handleLogout: () => void;
 }
 
 export const UserContext = React.createContext<UserContext>({
@@ -37,7 +37,7 @@ export const UserContext = React.createContext<UserContext>({
   user: "",
   setUser: () => {},
   handleAddUser: () => {},
-  handleLogout: () => {}
+  handleLogout: () => {},
 });
 
 export const UserProvider = ({ children }: ChildrenProvider) => {
@@ -63,11 +63,14 @@ export const UserProvider = ({ children }: ChildrenProvider) => {
   }, []);
 
   function getRandomColor(seed: string) {
-    const randomSeed = Array.from(seed).reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const hue = (randomSeed % 360) + 1; 
-    return `hsl(${hue}, 70%, 50%)`; 
+    const randomSeed = Array.from(seed).reduce(
+      (acc, char) => acc + char.charCodeAt(0),
+      0
+    );
+    const hue = (randomSeed % 360) + 1;
+    return `hsl(${hue}, 70%, 50%)`;
   }
-  
+
   const loadUsers = () => {
     fetch("https://chat-back-three.vercel.app/api/users")
       .then((response) => {
@@ -76,17 +79,18 @@ export const UserProvider = ({ children }: ChildrenProvider) => {
       .then((data) => {
         const coloredUsers = data.map((user: usersProps) => ({
           ...user,
-          color: user._id ? getRandomColor(user._id.toString()) : 'defaultColor'
+          color: user._id
+            ? getRandomColor(user._id.toString())
+            : "defaultColor",
         }));
-  
+
         setUsersList(coloredUsers);
-        console.log(usersList);
-        
       });
   };
 
   useEffect(() => {
     loadUsers();
+    console.log(usersList);
   }, [user, loggedUser]);
 
   const handleAddUser = () => {
@@ -109,8 +113,8 @@ export const UserProvider = ({ children }: ChildrenProvider) => {
   };
 
   const handleLogout = () => {
-    setLoggedUser("")
-  }
+    setLoggedUser("");
+  };
 
   return (
     <UserContext.Provider
@@ -122,7 +126,7 @@ export const UserProvider = ({ children }: ChildrenProvider) => {
         user,
         setUser,
         handleAddUser,
-        handleLogout
+        handleLogout,
       }}
     >
       {children}

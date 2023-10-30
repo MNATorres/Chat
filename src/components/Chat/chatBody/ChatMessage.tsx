@@ -17,7 +17,7 @@ export default function ChatMessage() {
         >
           <div className={style.meta}>
             <span className={style.sender}>
-              {maxLengthNameMessage(message.sender)}
+              {message.sender && maxLengthNameMessage(message.sender)}
             </span>
             <span className={style.timestamp}>{message.timestamp}</span>
           </div>
